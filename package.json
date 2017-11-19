@@ -4,7 +4,7 @@
   "description": "ReactJS Template Project",
   "main": "src/index.js",
   "scripts": {
-    "nodemon": "nodemon --exec babel-node server.js --ignore public/",
+    "nodemon": "nodemon --exec babel-node server.js --plugins=transform-class-properties,transform-object-rest-spread --presets=react,env --env={'targets': {'node': 'current' }} --ignore public/",
     "webpack": "webpack -wd",
     "build-webpack": "webpack -p",
     "test": "jest --watchAll",
@@ -13,23 +13,6 @@
   "author": "Margarita Krutikova <margaretkru@gmail.com>",
   "repository": "https://github.com/margaretkrutikova/react-template-project",
   "license": "MIT",
-  "babel": {
-    "presets": [
-      "react",
-      [
-        "env",
-        {
-          "targets": {
-            "node": "current"
-          }
-        }
-      ]
-    ],
-    "plugins": [
-      "transform-class-properties",
-      "transform-object-rest-spread"
-    ]
-  },
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-eslint": "^8.0.2",
