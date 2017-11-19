@@ -16,7 +16,14 @@
   "babel": {
     "presets": [
       "react",
-      ["env", { "targets": { "node": "current" } }]
+      [
+        "env",
+        {
+          "targets": {
+            "node": "current"
+          }
+        }
+      ]
     ],
     "plugins": [
       "transform-class-properties",
@@ -45,6 +52,7 @@
     "babel-polyfill": "^6.26.0",
     "ejs": "^2.5.7",
     "express": "^4.16.2",
+    "prop-types": "^15.6.0",
     "react": "^16.1.0",
     "react-dom": "^16.1.0"
   }

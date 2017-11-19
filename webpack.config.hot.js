@@ -5,6 +5,7 @@ const config = {
   entry: {
     app: [
       'babel-polyfill',
+      'prop-types',
       'react-hot-loader/patch',
       './src/index.js'
     ]
@@ -22,16 +23,17 @@ const config = {
           loader: 'babel-loader',
           options: {
             presets: [
-              [
-                'latest', {
-                  'es2015': {
-                    'modules': false
-                  }
-                }
-              ],
+              ['env', {
+                'modules': false
+              }],
               'react'
             ],
-            plugins: ['react-hot-loader/babel']
+            plugins: [
+              ['transform-class-properties', { 'spec': true }],
+              'transform-decorators',
+              'transform-object-rest-spread',
+              'react-hot-loader/babel'
+            ]
           }
         }
       }

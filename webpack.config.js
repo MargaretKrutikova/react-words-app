@@ -7,6 +7,7 @@ const config = {
       'babel-polyfill',
       'react',
       'react-dom',
+      'prop-types',
       'axios'
     ],
     app: ['./src/index.js']
