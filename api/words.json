@@ -1,0 +1,65 @@
+{
+  "data": [{ 
+    "id": 1, 
+    "value": "att få sparken från jobbet", 
+    "translations": ["to get fired"] 
+  },
+  { 
+    "id": 2, 
+    "value": "knarka, knarkigt", 
+    "translations": ["do drugs"] 
+  },
+  { 
+    "id": 3, 
+    "value": "att lagra, lagring", 
+    "translations": ["to store, storage"] 
+  },
+  { 
+    "id": 4, 
+    "value": "att ta i som ett djur", 
+    "explanations": ["t.ex. träning"] 
+  },
+  { 
+    "id": 5, 
+    "value": "synvinkel", 
+    "translations": ["point of view"],
+    "usages": [ "från/ur min synvinkel" ]
+  },
+  { 
+    "id": 6, 
+    "value": "inspirerad", 
+    "usages" : ["jag är inspirerad av någon"] 
+  },
+  { 
+    "id": 7, 
+    "value": "att klumpa ihop", 
+    "translations" : ["lump together", "смешивать в кучу"] 
+  },
+  { 
+    "id": 8, 
+    "value": "ivrig, ivrigt", 
+    "translations" : ["eager", "zealous", "усердно"] 
+  },
+  { 
+    "id": 9, 
+    "value": "flitig", 
+    "translations" : ["diligent", "hard-working"] 
+  },
+  { 
+    "id": 10, 
+    "value": "ytlig", 
+    "translations" : ["external", "superficial", "поверхностный"] 
+  },
+  { 
+    "id": 11, 
+    "value": "petig", 
+    "translations" : ["мелочный"],
+    "explanations":  ["för noggrann", "pedantisk" ] 
+  },
+  { 
+    "id": 12, 
+    "value": "kräsen", 
+    "translations" : ["picky"],
+    "explanations":  ["om mat t.ex." ] 
+  }]
+}
