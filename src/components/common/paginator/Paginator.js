@@ -1,40 +1,35 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-
-const pageLinkStyles = {
-  marginRight: '10px'
-};
-const activePageLinkStyles = {
-  pointerEvents: 'none',
-  cursor: 'default',
-  textDecoration: 'none',
-  color: 'black'
-};
+import Page from './Page';
 
 class Paginator extends PureComponent {
-  getPageLinkStyles(page) {
-    let isActive = page === this.props.currentPage;
-    if (!isActive) return pageLinkStyles;
-
-    return { ...pageLinkStyles, ...activePageLinkStyles };
-  }
-  setPage = (event, page) => {
-    if (event) {
-      event.preventDefault();
-    }
-    this.props.onPageChange(page);
-  }
   render() {
+    const { currentPage, totalPages, pagesToShow, onPageChange } = this.props;
+    const isFirstPage = currentPage === 1, isLastPage = currentPage === totalPages;
+
     return (
-      <div>
-        {this.props.pagesToShow.map((page, index) => 
-          <a key={index}
-            href=""
-            style={this.getPageLinkStyles(page)}
-            onClick={(event) => this.setPage(event, page)}>
-            {page}
-          </a>)}
-      </div>
+      <nav aria-label="Page navigation">
+        <ul className="pagination">
+          <Page {...{ onPageChange, page: 1, isDisabled: isFirstPage }}>
+            <span>First</span>
+          </Page>
+
+          <Page {...{ onPageChange, page: currentPage - 1, isDisabled: isFirstPage }}>
+            <span aria-hidden="true">&laquo;</span>
+          </Page>
+          
+          {pagesToShow.map((page, index) => 
+            <Page key={index} {...{onPageChange, page, isActive: page === currentPage }}/>)
+          }
+          
+          <Page {...{ onPageChange, page: currentPage + 1, isDisabled: isLastPage }}>
+            <span aria-hidden="true">&raquo;</span>
+          </Page>
+          <Page {...{ onPageChange, page: totalPages, isDisabled: isLastPage }}>
+            <span>Last</span>
+          </Page>
+        </ul>
+      </nav>
     );
   }
 }

@@ -61,5 +61,18 @@
     "value": "kräsen", 
     "translations" : ["picky"],
     "explanations":  ["om mat t.ex." ] 
+  },
+  { 
+    "id": 13, 
+    "value": "att glo, glor", 
+    "translations" : ["stare"],
+    "usages":  ["vad glor du på? varför glor du?" ] 
+  },
+  { 
+    "id": 14, 
+    "value": "att flina, flinar", 
+    "translations" : ["smile", "ухмыляться"],
+    "usages":  ["vad flinar du år?" ],
+    "explanations":  ["oft negativt sammanhang" ] 
   }]
 }
