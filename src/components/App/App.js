@@ -1,5 +1,5 @@
 import React from 'react';
-import WordsContainer from './words/WordsContainer';
+import WordsContainer from '../Words/WordsContainer';
 
 class App extends React.Component {
   render() {

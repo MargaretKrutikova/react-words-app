@@ -1,0 +1,84 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Link renders correctly 1`] = `
+<div
+  className="App container"
+>
+  <h1
+    className="col-xs-12"
+  >
+    Word list
+  </h1>
+  <div
+    className="col-xs-12 col-sm-12 col-md-6"
+  >
+    <div
+      style={
+        Object {
+          "padding": "30px 0",
+        }
+      }
+    />
+    <nav
+      aria-label="Page navigation"
+    >
+      <ul
+        className="pagination"
+      >
+        <li
+          className="disabled"
+        >
+          <a
+            href="#"
+            onClick={[Function]}
+          >
+            <span>
+              First
+            </span>
+          </a>
+        </li>
+        <li
+          className="disabled"
+        >
+          <a
+            href="#"
+            onClick={[Function]}
+          >
+            <span
+              aria-hidden="true"
+            >
+              «
+            </span>
+          </a>
+        </li>
+        <li
+          className=""
+        >
+          <a
+            href="#"
+            onClick={[Function]}
+          >
+            <span
+              aria-hidden="true"
+            >
+              »
+            </span>
+          </a>
+        </li>
+        <li
+          className=""
+        >
+          <a
+            href="#"
+            onClick={[Function]}
+          >
+            <span>
+              Last
+            </span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</div>
+`;

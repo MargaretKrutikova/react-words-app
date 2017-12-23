@@ -6,8 +6,8 @@
   "scripts": {
     "nodemon": "nodemon --exec babel-node server.js --plugins=transform-class-properties,transform-object-rest-spread --presets=react,env --env={'targets': {'node': 'current' }} --ignore public/",
     "webpack": "webpack -wd",
-    "build-webpack": "webpack -p",
-    "test": "jest --watchAll",
+    "build-webpack": "cross-env NODE_ENV=production webpack -p",
+    "test": "cross-env NODE_ENV=test jest --watchAll",
     "dev": "webpack-dev-server --hot --history-api-fallback --open --config webpack.config.hot.js"
   },
   "author": "Margarita Krutikova <margaretkru@gmail.com>",
@@ -15,20 +15,22 @@
   "license": "MIT",
   "devDependencies": {
     "babel-cli": "^6.26.0",
-    "babel-eslint": "^8.0.2",
+    "babel-eslint": "^8.0.3",
     "babel-loader": "^7.1.2",
     "babel-preset-env": "^1.6.1",
+    "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
+    "cross-env": "^5.1.3",
     "enzyme": "^3.1.1",
-    "enzyme-adapter-react-16": "^1.0.4",
-    "eslint": "^4.11.0",
-    "eslint-plugin-react": "^7.4.0",
-    "jest": "^21.2.1",
-    "nodemon": "^1.12.1",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "eslint": "^4.13.1",
+    "eslint-plugin-react": "^7.5.1",
+    "jest": "^22.0.4",
+    "nodemon": "^1.14.3",
     "react-hot-loader": "^3.1.2",
-    "webpack": "^3.8.1",
-    "webpack-dev-server": "^2.9.4"
+    "webpack": "^3.10.0",
+    "webpack-dev-server": "^2.9.7"
   },
   "dependencies": {
     "axios": "^0.17.0",
@@ -36,7 +38,7 @@
     "ejs": "^2.5.7",
     "express": "^4.16.2",
     "prop-types": "^15.6.0",
-    "react": "^16.1.0",
-    "react-dom": "^16.1.0"
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0"
   }
 }

@@ -1,8 +1,8 @@
 import React, { PureComponent } from 'react';
 import WordService from './WordService';
 import Words from './Words';
-import PaginatorContainer from '../common/paginator/PaginatorContainer';
-import Aux from '../common/AuxComponent';
+import PaginatorContainer from '../Paginator/PaginatorContainer';
+import Aux from '../AuxComponent/AuxComponent';
 
 class WordsContainer extends PureComponent {
   itemsPerPage = 3;
