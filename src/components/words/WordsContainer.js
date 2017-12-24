@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import WordService from './WordService';
 import Words from './Words';
-import PaginatorContainer from '../Paginator/PaginatorContainer';
+import { Paginator } from '../Paginator';
 import Aux from '../AuxComponent/AuxComponent';
 
 class WordsContainer extends PureComponent {
@@ -28,7 +28,7 @@ class WordsContainer extends PureComponent {
     return (
       <Aux>
         <Words words={words}/>
-        <PaginatorContainer onPageChange={this.getPaginatedWords} 
+        <Paginator onPageChange={this.getPaginatedWords} 
           totalItems={totalItems}
           itemsPerPage={this.itemsPerPage}
           initialPage={initialPage}/>

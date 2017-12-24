@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import Page from './Page';
+import Page from './Page/Page';
 
 class Paginator extends PureComponent {
   render() {
@@ -37,7 +37,7 @@ class Paginator extends PureComponent {
 Paginator.propTypes = {
   currentPage: PropTypes.number.isRequired,
   totalPages: PropTypes.number.isRequired,
-  pagesToShow: PropTypes.arrayOf(PropTypes.number),
+  pagesToShow: PropTypes.arrayOf(PropTypes.number).isRequired,
   onPageChange: PropTypes.func.isRequired
 };
 

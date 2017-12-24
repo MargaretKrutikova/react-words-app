@@ -24,10 +24,10 @@ describe('PaginatorContainer', () => {
     };
     const component = Enzyme.shallow(<PaginatorContainer {...testProps} />);
 
-    expect(PaginatorService.getPaginator).toHaveBeenCalled();
+    expect(PaginatorService.getPaginator).toHaveBeenCalledTimes(1);
 
     // change props
-    testProps.totalItems = 250;
-    expect(PaginatorService.getPaginator).toHaveBeenCalled();
+    component.setProps({ totalItems: 250 });
+    expect(PaginatorService.getPaginator).toHaveBeenCalledTimes(2);
   });
 });
