@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import Paginator from './Paginator';
-import PaginatorService from './PaginatorService';
+import PaginatorService from './PaginatorService/PaginatorService';
 
 class PaginatorContainer extends PureComponent {
   state = {
