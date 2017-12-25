@@ -17,6 +17,11 @@ const config = {
     filename: '[name].js',
     publicPath: ''
   },
+  resolve: {
+    alias: {
+      'Services': path.resolve(__dirname, './src/services/')
+    }
+  },
   module: {
     rules: [
       { 

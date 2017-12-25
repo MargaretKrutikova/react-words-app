@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import WordEntity from './WordEntity';
+import { WordEntity } from 'Services/Words';
 
 const wordStyles = {
   cursor: 'pointer',

@@ -13,6 +13,11 @@
   "author": "Margarita Krutikova <margaretkru@gmail.com>",
   "repository": "https://github.com/margaretkrutikova/react-template-project",
   "license": "MIT",
+  "jest": {
+    "moduleNameMapper": {
+      "^Services(.*)$": "<rootDir>/src/services$1"
+    }
+  },
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-eslint": "^8.0.3",

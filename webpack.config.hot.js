@@ -10,6 +10,11 @@ const config = {
       './src/index.js'
     ]
   },
+  resolve: {
+    alias: {
+      'Services': path.resolve(__dirname, './src/services/')
+    }
+  },
   output: {
     path: path.resolve(__dirname, './public'),
     filename: '[name].js'

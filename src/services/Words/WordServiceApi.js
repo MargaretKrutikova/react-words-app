@@ -2,7 +2,7 @@ import axios from 'axios';
 import WordEntity from './WordEntity';
 import words from '../../../api/words.json';
 
-class WordService {
+class WordServiceApi {
   getWords(page, itemsPerPage) {
     return new Promise((resolve, reject) => {
 
@@ -16,5 +16,5 @@ class WordService {
   }
 }
 
-const wordService = new WordService();
+const wordService = new WordServiceApi();
 export default wordService;

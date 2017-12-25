@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import WordService from './WordService';
+import { WordServiceApi } from 'Services/Words';
 import Words from './Words';
 import { Paginator } from '../Paginator';
 import Aux from '../AuxComponent/AuxComponent';
@@ -15,7 +15,7 @@ class WordsContainer extends PureComponent {
     this.getPaginatedWords(this.state.initialPage);
   }
   getPaginatedWords = (page) => {
-    WordService.getWords(page, this.itemsPerPage).then((data) => {
+    WordServiceApi.getWords(page, this.itemsPerPage).then((data) => {
       this.setState({ 
         words: data.words, 
         totalItems: data.totalItems
