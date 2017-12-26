@@ -1,18 +1,16 @@
 import React from 'react';
-import WordsContainer from '../Words/WordsContainer';
+import Main from '../Main/Main';
+import Header from '../Header/Header';
 
-class App extends React.Component {
-  render() {
-    return (
-      <div className="App container">
-        <h1 className="col-xs-12">Word list</h1>
+import { BrowserRouter as Router } from 'react-router-dom';
 
-        <div className="col-xs-12 col-sm-12 col-md-6" >
-          <WordsContainer />
-        </div>
-      </div> 
-    );
-  }
-}
+const App = () => (
+  <Router>
+    <div className="App container">
+      <Header />
+      <Main />
+    </div>
+  </Router>
+);
 
 export default App;
