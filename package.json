@@ -8,7 +8,7 @@
     "webpack": "webpack -wd",
     "build-webpack": "cross-env NODE_ENV=production webpack -p",
     "test": "cross-env NODE_ENV=test jest --watchAll",
-    "dev": "webpack --env.hot && webpack-dev-server --hot --history-api-fallback --open --content-base ./public"
+    "dev": "webpack -d --env.hot && webpack-dev-server -d --hot --history-api-fallback --open --content-base ./public"
   },
   "author": "Margarita Krutikova <margaretkru@gmail.com>",
   "repository": "https://github.com/margaretkrutikova/react-template-project",

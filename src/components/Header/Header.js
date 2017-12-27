@@ -19,12 +19,14 @@ class Header extends React.Component {
               <span className="icon-bar"></span>
               <span className="icon-bar"></span>
             </button>
-            <a className="navbar-brand" href="#">Words</a>
+            <Link className="navbar-brand" to='/'>Words</Link>
           </div>
 
           <nav className={!this.state.isVisibleNavigation ? 'collapse navbar-collapse' : ''}>
             <ul className="nav navbar-nav">
               <li><Link to='/'>Home</Link></li>
+              <li><Link to='/list'>Words</Link></li>
+              <li><Link to='/add'>Add</Link></li>
             </ul>
           </nav> 
         </div>
