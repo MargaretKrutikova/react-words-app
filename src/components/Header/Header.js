@@ -8,9 +8,20 @@ class Header extends React.Component {
   toggleNavigation = () => {
     this.setState((prevState) => ({ isVisibleNavigation: !prevState.isVisibleNavigation }));
   }
+  onBlur = (e) => {
+    var currentTarget = e.currentTarget;
+
+    setTimeout(() => {
+      if (!currentTarget.contains(document.activeElement)) {
+        this.setState({ isVisibleNavigation: false });
+      }
+    }, 0);
+  }
   render() {
     return (
-      <header className="navbar navbar-expand-lg sticky-top navbar-light bg-light">
+      <header className="navbar navbar-expand-lg sticky-top navbar-light bg-light" 
+        tabIndex="1" 
+        onBlur={this.onBlur}>
         <div className="container">
           <Link className="navbar-brand" to='/'>Words</Link>
           <button className="navbar-toggler d-sm-block d-md-none" type="button" onClick={this.toggleNavigation}>

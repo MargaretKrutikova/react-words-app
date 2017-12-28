@@ -17,7 +17,15 @@
     }
   }
 
-  &__btn-remove, &__btn-remove:hover {
-    color: darkred;
+  &__btn-remove {
+    cursor: pointer;
+    svg #remove {
+      transition: 200ms;
+      transition-timing-function: ease-in-out;
+      fill: #6e6e6e; 
+    }
+    &:hover {
+      svg #remove { fill: #3b3b3b; }
+    }
   }
 }
