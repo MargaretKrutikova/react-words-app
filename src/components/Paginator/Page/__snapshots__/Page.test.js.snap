@@ -23,12 +23,13 @@ ShallowWrapper {
     "nodeType": "host",
     "props": Object {
       "children": <a
+        className="page-link"
         href="#"
         onClick={[Function]}
       >
         4
       </a>,
-      "className": "",
+      "className": "page-item",
     },
     "ref": null,
     "rendered": Object {
@@ -37,6 +38,7 @@ ShallowWrapper {
       "nodeType": "host",
       "props": Object {
         "children": 4,
+        "className": "page-link",
         "href": "#",
         "onClick": [Function],
       },
@@ -53,12 +55,13 @@ ShallowWrapper {
       "nodeType": "host",
       "props": Object {
         "children": <a
+          className="page-link"
           href="#"
           onClick={[Function]}
         >
           4
         </a>,
-        "className": "",
+        "className": "page-item",
       },
       "ref": null,
       "rendered": Object {
@@ -67,6 +70,7 @@ ShallowWrapper {
         "nodeType": "host",
         "props": Object {
           "children": 4,
+          "className": "page-link",
           "href": "#",
           "onClick": [Function],
         },
@@ -110,12 +114,13 @@ ShallowWrapper {
     "nodeType": "host",
     "props": Object {
       "children": <a
+        className="page-link"
         href="#"
         onClick={[Function]}
       >
         4
       </a>,
-      "className": "active",
+      "className": "page-item active",
     },
     "ref": null,
     "rendered": Object {
@@ -124,6 +129,7 @@ ShallowWrapper {
       "nodeType": "host",
       "props": Object {
         "children": 4,
+        "className": "page-link",
         "href": "#",
         "onClick": [Function],
       },
@@ -140,12 +146,13 @@ ShallowWrapper {
       "nodeType": "host",
       "props": Object {
         "children": <a
+          className="page-link"
           href="#"
           onClick={[Function]}
         >
           4
         </a>,
-        "className": "active",
+        "className": "page-item active",
       },
       "ref": null,
       "rendered": Object {
@@ -154,6 +161,7 @@ ShallowWrapper {
         "nodeType": "host",
         "props": Object {
           "children": 4,
+          "className": "page-link",
           "href": "#",
           "onClick": [Function],
         },
@@ -197,12 +205,13 @@ ShallowWrapper {
     "nodeType": "host",
     "props": Object {
       "children": <a
+        className="page-link"
         href="#"
         onClick={[Function]}
       >
         4
       </a>,
-      "className": "disabled",
+      "className": "page-item disabled",
     },
     "ref": null,
     "rendered": Object {
@@ -211,6 +220,7 @@ ShallowWrapper {
       "nodeType": "host",
       "props": Object {
         "children": 4,
+        "className": "page-link",
         "href": "#",
         "onClick": [Function],
       },
@@ -227,12 +237,13 @@ ShallowWrapper {
       "nodeType": "host",
       "props": Object {
         "children": <a
+          className="page-link"
           href="#"
           onClick={[Function]}
         >
           4
         </a>,
-        "className": "disabled",
+        "className": "page-item disabled",
       },
       "ref": null,
       "rendered": Object {
@@ -241,6 +252,7 @@ ShallowWrapper {
         "nodeType": "host",
         "props": Object {
           "children": 4,
+          "className": "page-link",
           "href": "#",
           "onClick": [Function],
         },

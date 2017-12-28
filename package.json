@@ -15,7 +15,8 @@
   "license": "MIT",
   "jest": {
     "moduleNameMapper": {
-      "^Services(.*)$": "<rootDir>/src/services$1"
+      "^Services(.*)$": "<rootDir>/src/services$1",
+      "(.*).scss$": "identity-obj-proxy"
     }
   },
   "devDependencies": {
@@ -34,6 +35,7 @@
     "extract-text-webpack-plugin": "^3.0.2",
     "file-loader": "^1.1.6",
     "html-webpack-plugin": "^2.30.1",
+    "identity-obj-proxy": "^3.0.0",
     "jest": "^22.0.4",
     "jest-in-case": "^1.0.2",
     "node-sass": "^4.7.2",

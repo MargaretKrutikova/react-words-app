@@ -12,7 +12,7 @@ describe('App', () => {
   it('renders correctly', () => {
     const wrapper = Enzyme.shallow(<App />);
 
-    expect(wrapper.children().length).toBe(2);
+    expect(wrapper.children().length).toBe(1);
     // snapshot expectations
     expect(wrapper).toMatchSnapshot(); // if anything changes the snapshot expectation will fail
   });
