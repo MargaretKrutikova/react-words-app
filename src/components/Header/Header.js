@@ -10,23 +10,18 @@ class Header extends React.Component {
   }
   render() {
     return (
-      <header className="navbar navbar-default navbar-fixed-top" role="navigation">
+      <header className="navbar navbar-expand-lg sticky-top navbar-light bg-light">
         <div className="container">
-          <div className="navbar-header">
-            <button type="button" onClick={this.toggleNavigation} className="navbar-toggle">
-              <span className="sr-only">Toggle navigation</span>
-              <span className="icon-bar"></span>
-              <span className="icon-bar"></span>
-              <span className="icon-bar"></span>
-            </button>
-            <Link className="navbar-brand" to='/'>Words</Link>
-          </div>
+          <Link className="navbar-brand" to='/'>Words</Link>
+          <button className="navbar-toggler d-sm-block d-md-none" type="button" onClick={this.toggleNavigation}>
+            <span className="navbar-toggler-icon"></span>
+          </button>
 
-          <nav className={!this.state.isVisibleNavigation ? 'collapse navbar-collapse' : ''}>
-            <ul className="nav navbar-nav">
-              <li><Link to='/'>Home</Link></li>
-              <li><Link to='/list'>Words</Link></li>
-              <li><Link to='/add'>Add</Link></li>
+          <nav className={!this.state.isVisibleNavigation ? 'collapse navbar-collapse' : 'navbar-collapse'}>
+            <ul className='navbar-nav mr-auto'>
+              <li className="nav-item active"><Link className="nav-link" to='/'>Home</Link></li>
+              <li className="nav-item"><Link className="nav-link" to='/list'>Words</Link></li>
+              <li className="nav-item"><Link className="nav-link" to='/add'>Add</Link></li>
             </ul>
           </nav> 
         </div>

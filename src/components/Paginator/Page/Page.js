@@ -10,7 +10,7 @@ class Page extends PureComponent {
     this.props.onPageChange(page);
   }
   getPageClass() {
-    let classes = [];
+    let classes = ['page-item'];
     this.props.isActive && classes.push('active');
     this.props.isDisabled && classes.push('disabled');
 
@@ -21,7 +21,7 @@ class Page extends PureComponent {
 
     return (
       <li className={this.getPageClass()}>
-        <a href="#" onClick={(event) => this.setPage(event, page)}>
+        <a href="#" className='page-link' onClick={(event) => this.setPage(event, page)}>
           { this.props.children || page }
         </a>
       </li>);

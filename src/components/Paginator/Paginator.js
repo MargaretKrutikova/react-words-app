@@ -8,8 +8,8 @@ class Paginator extends PureComponent {
     const isFirstPage = currentPage === 1, isLastPage = currentPage === totalPages;
 
     return (
-      <nav aria-label="Page navigation">
-        <ul className="pagination">
+      <nav aria-label="Page navigation" className='paginator'>
+        <ul className="pagination justify-content-center">
           <Page {...{ onPageChange, page: 1, isDisabled: isFirstPage }}>
             <span>First</span>
           </Page>

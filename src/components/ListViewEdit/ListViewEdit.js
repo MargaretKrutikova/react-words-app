@@ -47,7 +47,7 @@ class ListViewEdit extends PureComponent {
     return (
       <div className={className}>
         <div className='list-view-edit__title'>
-          <h4>{this.props.title}</h4>
+          <h5>{this.props.title}</h5>
           <button className='btn btn-default btn-sm' onClick={this.addListValue}>Add</button>
         </div>
         

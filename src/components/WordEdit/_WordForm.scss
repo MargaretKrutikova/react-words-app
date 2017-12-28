@@ -1,25 +1,37 @@
+@import '../../styles/utils/_bootstrap-utils';
+
 .word-form {
   $list-view-width: 250px;
-  &__value-input-group .form-control {
-    height: 40px;
-  }
-  &__lists {
-    display: flex;
-    align-items: flex-start;
-  }
-  &__list {
+  
+  @mixin word-list-width {
     width: $list-view-width;
-    margin-right: 20px;
+    @include media-breakpoint-down(sm) {
+      width: 70%;
+    }
+    @include media-breakpoint-down(xs) {
+      width: 100%;
+    }
+  }
+
+  &__value-input-group.input-group, &__list {
+    @include word-list-width;
+  }
+
+  &__list {
+    margin-bottom: 20px;
     border: 1px solid #CCC;
     border-radius: 5px;
     padding: 10px;
     background-color: rgba(240, 240, 240, 0.63);
+
+    @include media-breakpoint-up(sm) {
+      margin-right: 20px;
+    }
   }
   &__actions {
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 150px;
-    margin-top: 30px;
   }
 }

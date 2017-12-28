@@ -5,7 +5,7 @@ import { Paginator } from '../Paginator';
 import Aux from '../AuxComponent/AuxComponent';
 
 class WordsContainer extends PureComponent {
-  itemsPerPage = 3;
+  itemsPerPage = 4;
   state = { 
     words: [],
     totalItems: 0,
@@ -28,7 +28,8 @@ class WordsContainer extends PureComponent {
     return (
       <Aux>
         <Words words={words}/>
-        <Paginator onPageChange={this.getPaginatedWords} 
+        <Paginator
+          onPageChange={this.getPaginatedWords} 
           totalItems={totalItems}
           itemsPerPage={this.itemsPerPage}
           initialPage={initialPage}/>

@@ -30,7 +30,7 @@ class WordForm extends PureComponent {
     return (
       <div className='word-form'>
         <PageHeader>{ isEditingMode ? 'Edit word' : 'Add word' }</PageHeader>
-        <div className="form-group form-inline input-group-lg word-form__value-input-group">
+        <div className="input-group form-group word-form__value-input-group mb-4">
           <input 
             type="text"
             className="form-control"
@@ -39,7 +39,7 @@ class WordForm extends PureComponent {
             onChange={this.onWordValueChanged}
           />
         </div>
-        <div className='word-form__lists'>
+        <div className='d-flex flex-wrap align-items-start'>
           <ListViewEdit
             className='word-form__list'
             title='Translations:'
@@ -61,7 +61,7 @@ class WordForm extends PureComponent {
             onChange={this.onWordPropertyChanged.bind(this, 'usages')}
           />
         </div>
-        <div className='word-form__actions'>
+        <div className='word-form__actions mb-4 mt-2'>
           <button className='btn btn-default btn-primary' onClick={() => this.props.save(this.state.word)}>Save</button>
           <button className='btn btn-default btn-danger' onClick={this.props.cancel}>{ isEditingMode ? 'Revert' : 'Cancel' }</button>
         </div>

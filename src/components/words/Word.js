@@ -2,11 +2,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { WordEntity } from 'Services/Words';
 
-const wordStyles = {
-  cursor: 'pointer',
-  borderTop: '1px solid rgba(200, 200, 200, 0.6)'
-};
-
 class Word extends Component {
   render() {
     const word = this.props.word;
@@ -14,9 +9,9 @@ class Word extends Component {
       .filter((value) => value)
       .join(', ');
     return (
-      <div style={wordStyles}>
-        <h3>{word.value}</h3>
-        <p>{shortProperties}</p>
+      <div>
+        <h4>{word.value}</h4>
+        <span>{shortProperties}</span>
       </div>
     );
   }
