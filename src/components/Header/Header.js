@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 class Header extends React.Component {
   state = {
@@ -23,16 +23,16 @@ class Header extends React.Component {
         tabIndex="1" 
         onBlur={this.onBlur}>
         <div className="container">
-          <Link className="navbar-brand" to='/'>Words</Link>
+          <NavLink className="navbar-brand" to='/'>Words</NavLink>
           <button className="navbar-toggler d-sm-block d-md-none" type="button" onClick={this.toggleNavigation}>
             <span className="navbar-toggler-icon"></span>
           </button>
 
           <nav className={!this.state.isVisibleNavigation ? 'collapse navbar-collapse' : 'navbar-collapse'}>
             <ul className='navbar-nav mr-auto'>
-              <li className="nav-item active"><Link className="nav-link" to='/'>Home</Link></li>
-              <li className="nav-item"><Link className="nav-link" to='/list'>Words</Link></li>
-              <li className="nav-item"><Link className="nav-link" to='/add'>Add</Link></li>
+              <li className="nav-item"><NavLink className="nav-link" exact to='/'>Home</NavLink></li>
+              <li className="nav-item"><NavLink className="nav-link" to='/list'>Words</NavLink></li>
+              <li className="nav-item"><NavLink className="nav-link" to='/add'>Add</NavLink></li>
             </ul>
           </nav> 
         </div>
