@@ -17,10 +17,10 @@ ShallowWrapper {
     "key": undefined,
     "nodeType": "class",
     "props": Object {
-      "children": <Aux>
+      "children": <UNDEFINED>
         <Header />
         <Main />
-      </Aux>,
+      </UNDEFINED>,
     },
     "ref": null,
     "rendered": Object {
@@ -54,7 +54,7 @@ ShallowWrapper {
           "type": [Function],
         },
       ],
-      "type": [Function],
+      "type": Symbol(react.fragment),
     },
     "type": [Function],
   },
@@ -64,10 +64,10 @@ ShallowWrapper {
       "key": undefined,
       "nodeType": "class",
       "props": Object {
-        "children": <Aux>
+        "children": <UNDEFINED>
           <Header />
           <Main />
-        </Aux>,
+        </UNDEFINED>,
       },
       "ref": null,
       "rendered": Object {
@@ -101,7 +101,7 @@ ShallowWrapper {
             "type": [Function],
           },
         ],
-        "type": [Function],
+        "type": Symbol(react.fragment),
       },
       "type": [Function],
     },

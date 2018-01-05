@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react';
 import { WordEntity, WordServiceApi } from 'Services/Words';
-import Aux from '../AuxComponent/AuxComponent';
 import WordForm from './WordForm';
 
 class WordFormContainer extends PureComponent {
@@ -43,7 +42,7 @@ class WordFormContainer extends PureComponent {
   }
   render() {
     return (
-      <Aux>
+      <React.Fragment>
         { this.state.isError ? 
           (<h3>Oooops! Some error occured.</h3>) : 
           (<WordForm
@@ -53,7 +52,7 @@ class WordFormContainer extends PureComponent {
             cancel={this.cancelChanges}
           />)
         }
-      </Aux>);
+      </React.Fragment>);
   }
 }
 
