@@ -5,19 +5,12 @@ import Enzyme from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 Enzyme.configure({ adapter: new Adapter() });
 
-// moch the paginator service
-jest.mock('./PaginatorService/PaginatorService', () => function() {
-  this.getPaginator = () => ({});
-  return this;
-});
 import PaginatorService from './PaginatorService/PaginatorService';
-
 import PaginatorContainer from './PaginatorContainer';
 
 describe('PaginatorContainer', () => {
   it('should call PaginatorService.getPaginator on init and when updating props', () => {
-    PaginatorService.getPaginator = jest.fn();
-    
+    PaginatorService.getPaginator = jest.fn(() => ({ currentPage: 1, totalPages: 2, pagesToShow: [1, 2] }));
     const testProps = {
       totalItems: 200,
       onPageChange: () => {}
