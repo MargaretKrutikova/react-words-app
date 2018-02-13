@@ -13,7 +13,7 @@ const Words = (props) => (
     { !props.loading && props.words.map((word, index) => (
       <div key={index} className='d-flex justify-content-between py-3 words-list__item'>
         <Word word={word} />
-        <Link to={`/edit/${word.id}`}>
+        <Link to={`/edit/${word._id}`}>
                 Edit
         </Link>
       </div>

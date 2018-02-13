@@ -10,10 +10,10 @@ const initialState = {
   currentPage: 1,
   pageToLoad: undefined,
   loading: false,
-  totalItems: 1,
+  total: 1,
   itemsPerPage: undefined,
   error: null,
-  list: []
+  items: []
 };
 
 // Action creators
@@ -22,9 +22,9 @@ const actions = {
     type: REQUEST_WORDS, 
     payload : { pageToLoad: page, itemsPerPage }
   }),
-  requestWordsSuccess: (list, totalItems, page) => ({ 
+  requestWordsSuccess: (items, total, page) => ({ 
     type: REQUEST_WORDS_SUCCESS, 
-    payload : { currentPage: page, totalItems, pageToLoad: undefined, list }
+    payload : { currentPage: page, total, pageToLoad: undefined, items }
   }),
   requestWordsFailure: (error) => ({ 
     type: REQUEST_WORDS_FAILURE, 
@@ -39,7 +39,7 @@ export const fetchWords = function(page, itemsPerPage) {
     dispatch(actions.requestWords(page, itemsPerPage));
 
     return WordServiceApi.getWords(page, itemsPerPage).then(
-      (data) => dispatch(actions.requestWordsSuccess(data.words, data.totalItems, page)),
+      (data) => dispatch(actions.requestWordsSuccess(data.items, data.total, page)),
       (error) => dispatch(actions.requestWordsFailure(error))
     );
   };

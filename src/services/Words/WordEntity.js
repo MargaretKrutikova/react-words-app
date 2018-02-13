@@ -1,19 +1,22 @@
 class WordEntity {
   constructor({
-    id = 0,
+    _id,
     value = '',
-    type = '',
     translations = [],
     explanations = [],
-    usages = []
+    usages = [],
+    createdDate = null,
+    updatedDate = null
   } = {}) {
-    this.id = id;
+    this._id = _id;
     this.value = value;
-    this.type = type;
+
     // copy the arrays to avoid mutations
     this.translations = translations.slice();
     this.explanations = explanations.slice();
     this.usages = usages.slice();
+    this.createdDate = createdDate;
+    this.updatedDate = updatedDate;
   }
 }
 

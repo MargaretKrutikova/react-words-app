@@ -16,7 +16,7 @@ class WordFormContainer extends PureComponent {
       WordServiceApi.getWord(wordId)
         .then((wordEntity) => this.setState({ 
           word: wordEntity, 
-          wordId: wordEntity.id 
+          wordId: wordEntity._id 
         }))
         .catch(() => {
           this.setState({ word: null, wordId: undefined, isError: true });
@@ -24,11 +24,7 @@ class WordFormContainer extends PureComponent {
     }
   }
   saveChanges = (word) => {
-    if (this.state.wordId) {
-      WordServiceApi.updateWord(word);
-    } else {
-      WordServiceApi.createWord(word);
-    }
+    WordServiceApi.saveWord(word);
   }
   isEditMode = () => {
     return this.state.wordId != undefined;

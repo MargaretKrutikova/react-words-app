@@ -23,14 +23,14 @@ class WordsContainer extends React.Component {
       .then(() => this.props.history && this.props.history.push(`/list/page/${page}`));
   }
   render() {
-    let { list, totalItems, currentPage, itemsPerPage, loading } = this.props.words;
+    let { items, total, currentPage, itemsPerPage, loading } = this.props.words;
 
     return (
       <React.Fragment>
-        <Words words={list} loading={loading}/>
+        <Words words={items} loading={loading}/>
         <Paginator
           onPageChange={this.onPageChange}
-          totalItems={totalItems}
+          totalItems={total}
           itemsPerPage={itemsPerPage}
           currentPage={currentPage}/>
       </React.Fragment>

@@ -18,6 +18,7 @@ module.exports = {
   plugins: ['react'],
   rules: {
     'react/prop-types': ['off'],
+    'no-console': 'off',
     indent: ['error', 2, { SwitchCase: 1 }],
     'linebreak-style': ['error', 'unix'],
     quotes: ['error', 'single'],
