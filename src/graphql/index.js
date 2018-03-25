@@ -1,2 +1,2 @@
-export { GetPaginatedWords, GetWordById } from './wordQuery';
-export { default as SaveWord } from './wordMutation';
+export { GetPaginatedWords, GetWordById } from './words/wordQuery';
+export { default as SaveWord } from './words/wordMutation';
