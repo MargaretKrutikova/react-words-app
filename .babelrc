@@ -1,18 +1,32 @@
 {
   "presets": [
-    ["env", {"modules": false}],
+    [
+      "env",
+      {
+        "modules": false
+      }
+    ],
     "stage-2",
-    "react"
+    "react",
+    "flow"
   ],
   "plugins": [
     "react-hot-loader/babel"
   ],
   "env": {
     "test": {
-      "presets": ["react", "env", "stage-2"]
+      "presets": [
+        "react",
+        "env",
+        "stage-2"
+      ]
     },
     "production": {
-      "presets": ["react", "env", "stage-2"]
+      "presets": [
+        "react",
+        "env",
+        "stage-2"
+      ]
     }
   }
 }

@@ -1,22 +1,33 @@
-class WordEntity {
-  constructor({
-    _id,
-    value = '',
-    translations = [],
-    explanations = [],
-    usages = [],
-    createdDate = null,
-    updatedDate = null
-  } = {}) {
-    this._id = _id;
-    this.value = value;
+// @flow
+export type WordType = {
+  _id: string,
+  value: string,
+  translations?: ?Array<string>,
+  explanations?: ?Array<string>,
+  usages?: ?Array<string>,
+  createdDate?: ?Date,
+  updatedDate?: ?Date
+}
 
-    // copy the arrays to avoid mutations
-    this.translations = translations.slice();
-    this.explanations = explanations.slice();
-    this.usages = usages.slice();
-    this.createdDate = createdDate;
-    this.updatedDate = updatedDate;
+class WordEntity {
+  _id: ?string;
+  value: string;
+  translations: Array<string>;
+  explanations: Array<string>;
+  usages: Array<string>;
+  createdDate: ?Date;
+  updatedDate: ?Date;
+
+  constructor(word: ?WordType) {
+    this._id = word ? word._id : undefined;
+    this.value = word ? word.value : '';
+
+    this.translations = (word && word.translations) || [];
+    this.explanations = (word && word.explanations) || [];
+    this.usages = (word && word.usages) || [];
+
+    this.createdDate = word ? word.createdDate : new Date();
+    this.updatedDate = word ? word.updatedDate : new Date();
   }
 }
 

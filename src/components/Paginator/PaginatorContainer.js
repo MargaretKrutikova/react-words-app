@@ -1,13 +1,21 @@
+// @flow
 import React from 'react';
 import PropTypes from 'prop-types';
 import Paginator from './Paginator';
 import PaginatorService from './PaginatorService/PaginatorService';
 
-const PaginatorContainer = (props) => {
+type Props = {
+  totalItems: number,
+  currentPage: number,
+  onPageChange: (page: number) => void,
+  itemsPerPage: number,
+  maxPagesToShow: number
+}
+const PaginatorContainer = (props: Props) => {
   const paginator = PaginatorService.getPaginator(props);
-  
+
   return (
-    <Paginator onPageChange={props.onPageChange} {...paginator}/>
+    <Paginator onPageChange={props.onPageChange} {...paginator} />
   );
 };
 
