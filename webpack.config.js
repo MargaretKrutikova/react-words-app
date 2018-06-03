@@ -2,6 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 
 const buildWebpackConfig = (env) => {
   // flags
@@ -19,10 +20,10 @@ const buildWebpackConfig = (env) => {
     filename: 'index.html',
     inject: 'body'
   });
-  const plugins = [ExtractTextPluginConfig, HtmlWebpackPluginConfig];
+  const plugins = [ExtractTextPluginConfig, HtmlWebpackPluginConfig, new Dotenv()];
 
   let sourceMaps = !isProduction;
-  let minimize = isProduction; 
+  let minimize = isProduction;
 
   // different entry configuration for hot reloading
   const webpackEntry = {};
@@ -48,7 +49,7 @@ const buildWebpackConfig = (env) => {
         name: 'vendor',
         minChunks: Infinity
       }));
-    
+
     if (isProduction) {
       plugins.push(new webpack.DefinePlugin({
         'process.env.NODE_ENV': JSON.stringify('production')
@@ -71,12 +72,12 @@ const buildWebpackConfig = (env) => {
     },
     module: {
       rules: [
-        { 
+        {
           test: /\.js$/,
           exclude: /node_modules/,
           use: {
             loader: 'babel-loader'
-          } 
+          }
         },
         {
           test: /\.(woff|woff2|eot|ttf|svg)$/,
@@ -101,7 +102,7 @@ const buildWebpackConfig = (env) => {
               loader: 'postcss-loader',
               options: {
                 sourceMap: sourceMaps,
-                plugins: () => 
+                plugins: () =>
                   ([require('autoprefixer')({ browsers: 'last 5 versions' })])
               }
             },

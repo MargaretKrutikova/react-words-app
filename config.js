@@ -1,8 +1,7 @@
-const env = process.env;
-
-export const nodeEnv = env.NODE_ENV || 'development';
+export const nodeEnv = process.env.NODE_ENV || 'development';
 
 export default {
-  port: env.PORT || 8081,
-  host: env.HOST || 'localhost',
+  port: process.env.PORT || 8081,
+  host: process.env.HOST || 'localhost',
+  apiUrl: process.env.API_URL || 'http://localhost:4000/graphql',
 };

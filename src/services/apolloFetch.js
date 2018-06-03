@@ -1,12 +1,12 @@
 import { createApolloFetch } from 'apollo-fetch';
+import config from '../../config';
 
-const uri = 'http://localhost:4000/graphql';
-const apolloFetch = createApolloFetch({ uri });
+const apolloFetch = createApolloFetch({ uri: config.apiUrl });
 
 apolloFetch.useAfter(({ response }, next) => {
   if (!response.ok) {
     const { status, statusText, parsed } = response;
-    
+
     const { errors = [] } = parsed;
     const errorMessage = errors.map((e) => e.message).join(', ');
 
@@ -14,7 +14,7 @@ apolloFetch.useAfter(({ response }, next) => {
 
     const error = new Error(statusText);
     error.detailedErrors = errors;
-    
+
     response.parsed = { error };
   }
 
@@ -24,7 +24,7 @@ apolloFetch.useAfter(({ response }, next) => {
 const apolloFetchWrapper = (args) => {
   return apolloFetch(args)
     .then(
-      ({ data, error }) => (error ? Promise.reject(error) : data), 
+      ({ data, error }) => (error ? Promise.reject(error) : data),
       (error) => Promise.reject(error)
     );
 };
