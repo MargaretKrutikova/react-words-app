@@ -27,8 +27,9 @@ const buildWebpackConfig = (env) => {
 
   // different entry configuration for hot reloading
   const webpackEntry = {};
+  const enableHotReload = isHot || (env && env.hot);
 
-  if (isHot || (env && env.hot)) {
+  if (enableHotReload) {
     webpackEntry.app = [
       'babel-polyfill',
       'prop-types',
@@ -44,11 +45,6 @@ const buildWebpackConfig = (env) => {
       'prop-types',
       'axios'
     ];
-    plugins.push(
-      new webpack.optimize.CommonsChunkPlugin({
-        name: 'vendor',
-        minChunks: Infinity
-      }));
 
     if (isProduction) {
       plugins.push(new webpack.DefinePlugin({
@@ -59,6 +55,16 @@ const buildWebpackConfig = (env) => {
 
   return {
     entry: webpackEntry,
+    optimization: enableHotReload && {
+      splitChunks: {
+        cacheGroups: {
+          commons: {
+            name: 'vendor',
+            chunks: 'all'
+          }
+        }
+      }
+    },
     output: {
       path: path.resolve(__dirname, 'public'),
       filename: '[name].js',
