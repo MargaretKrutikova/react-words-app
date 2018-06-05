@@ -1,15 +1,15 @@
 const path = require('path');
 const webpack = require('webpack');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const buildWebpackConfig = (env) => {
   // flags
   const isHot = process.argv.indexOf('--hot') !== -1;
   const isProduction = process.argv.indexOf('-p') !== -1;
 
-  const ExtractTextPluginConfig = new ExtractTextPlugin({
+  const MiniCssExtractPluginConfig = new MiniCssExtractPlugin({
     filename: 'site.css',
     allChunks: true,
     disable: isHot
@@ -20,7 +20,7 @@ const buildWebpackConfig = (env) => {
     filename: 'index.html',
     inject: 'body'
   });
-  const plugins = [ExtractTextPluginConfig, HtmlWebpackPluginConfig, new Dotenv()];
+  const plugins = [MiniCssExtractPluginConfig, HtmlWebpackPluginConfig, new Dotenv()];
 
   let sourceMaps = !isProduction;
   let minimize = isProduction;
@@ -87,10 +87,10 @@ const buildWebpackConfig = (env) => {
           }
         },
         {
-          test: /\.scss$/,
-          use: ExtractTextPlugin.extract({
-            fallback: 'style-loader',
-            use: [{
+          test: /\.(css|sass|scss)$/,
+          use: [
+            MiniCssExtractPlugin.loader,
+            {
               loader: 'css-loader',
               options: {
                 modules: false,
@@ -113,7 +113,6 @@ const buildWebpackConfig = (env) => {
                 minimize: minimize
               }
             }]
-          })
         }
       ]
     }
