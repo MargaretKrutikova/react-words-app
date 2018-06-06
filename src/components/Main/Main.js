@@ -14,7 +14,7 @@ const Main = () => (
 
       {['/add', '/edit/:wordId'].map((path, ind) =>
         <Route key={ind} path={path} component={(props) => (
-          <section className="col-xs-12 col-sm-12 col-md-10">
+          <section className="col-xs-12 col-sm-12 col-md-12">
             <WordFormContainer {...props} />
           </section>
         )} />

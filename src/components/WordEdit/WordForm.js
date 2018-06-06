@@ -22,48 +22,51 @@ class WordForm extends PureComponent {
     this.onWordPropertyChanged('value', newValue);
   }
   onWordPropertyChanged = (propertyName, propertyValue) => {
-    this.setState((prevState) => ({ word: { ...prevState.word, ...{ [propertyName]: propertyValue} } }));
+    this.setState((prevState) => ({ word: { ...prevState.word, ...{ [propertyName]: propertyValue } } }));
   }
   render() {
     const isEditingMode = this.props.mode === 'edit';
-    
+
     return (
-      <div className='word-form'>
-        <PageHeader>{ isEditingMode ? 'Edit word' : 'Add word' }</PageHeader>
-        <div className="input-group form-group word-form__value-input-group mb-4">
-          <input 
+      <div className='px-3 my-4 mr-auto border rounded bg-light word-form' id="word-form">
+        <PageHeader>{isEditingMode ? 'Edit word' : 'Add word'}</PageHeader>
+
+        <div className="input-group form-group mb-4">
+          <input
             type="text"
             className="form-control"
             id="value"
-            value={this.state.word.value} 
+            value={this.state.word.value}
+            placeholder="Enter word"
             onChange={this.onWordValueChanged}
           />
         </div>
-        <div className='d-flex flex-wrap align-items-start'>
+        <hr />
+        <div >
           <ListViewEdit
-            className='word-form__list'
-            title='Translations:'
+            title='Translations'
+            placeholder="Translate word"
             list={this.props.word.translations}
             onChange={this.onWordPropertyChanged.bind(this, 'translations')}
           />
 
           <ListViewEdit
-            className='word-form__list'
-            title='Explanations:'
+            title='Explanations'
+            placeholder="Explain word"
             list={this.props.word.explanations}
             onChange={this.onWordPropertyChanged.bind(this, 'explanations')}
           />
 
           <ListViewEdit
-            className='word-form__list'
-            title='Usages:'
+            title='Usages'
+            placeholder="Use in a phrase/sentence"
             list={this.props.word.usages}
             onChange={this.onWordPropertyChanged.bind(this, 'usages')}
           />
         </div>
-        <div className='word-form__actions mb-4 mt-2'>
-          <button className='btn btn-default btn-primary' onClick={() => this.props.save(this.state.word)}>Save</button>
-          <button className='btn btn-default btn-danger' onClick={this.props.cancel}>{ isEditingMode ? 'Revert' : 'Cancel' }</button>
+        <div className='mb-4 mt-2'>
+          <button className='btn btn-default btn-primary mr-4' onClick={() => this.props.save(this.state.word)}>Save</button>
+          <button className='btn btn-default btn-danger' onClick={this.props.cancel}>{isEditingMode ? 'Revert' : 'Cancel'}</button>
         </div>
       </div>
     );
@@ -72,7 +75,7 @@ class WordForm extends PureComponent {
 
 WordForm.propTypes = {
   word: PropTypes.instanceOf(WordEntity).isRequired,
-  save:  PropTypes.func.isRequired,
+  save: PropTypes.func.isRequired,
   mode: PropTypes.oneOf(['add', 'edit']).isRequired
 };
 

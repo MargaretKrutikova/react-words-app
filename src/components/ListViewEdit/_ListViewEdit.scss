@@ -1,20 +1,6 @@
 .list-view-edit {
-  
-  &__title {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
-  }
-  &__input-group {
-    margin-bottom: 10px;
-    .form-control {
-      height: auto;
-    }
-
-    .glyphicon {
-      font-size: 12px;
-    }
+  &__input-container{
+    flex: 1 1 auto;
   }
 
   &__btn-remove {
