@@ -15,6 +15,7 @@ type State = {
 }
 
 class WordFormContainer extends PureComponent<Props, State> {
+  originalWord: WordEntity;
   state = {
     word: new WordEntity(),
     wordId: undefined,
@@ -27,13 +28,15 @@ class WordFormContainer extends PureComponent<Props, State> {
     // 'edit' mode
     if (wordId) {
       WordServiceApi.getWord(wordId)
-        .then((wordEntity) => this.setState({
-          word: wordEntity,
-          wordId: wordEntity._id
-        }))
+        .then((wordEntity) => {
+          this.setState({
+            word: wordEntity,
+            wordId: wordEntity._id
+          });
+          this.originalWord = wordEntity;
+        })
         .catch(() => {
           this.setState({
-            word: new WordEntity(),
             wordId: undefined,
             isError: true
           });
@@ -48,7 +51,7 @@ class WordFormContainer extends PureComponent<Props, State> {
   }
   cancelChanges = () => {
     if (this.isEditMode()) {
-      this.setState((prevState) => ({ word: new WordEntity(prevState.word) }));
+      this.setState({ word: new WordEntity(this.originalWord) });
     } else {
       this.props.history.push('/list');
     }

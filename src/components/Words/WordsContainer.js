@@ -12,21 +12,18 @@ class WordsContainer extends React.Component {
     const page = +this.props.match.params.page || 1;
     this.getPaginatedWords(page);
   }
+  componentDidUpdate(prevProps, prevState) {
+    const { history, words } = this.props;
+    if (words.currentPage !== prevProps.words.currentPage && history) {
+      history.push(`/list/page/${words.currentPage}`);
+    }
+  }
   shouldComponentUpdate(nextProps) {
     return this.props.words !== nextProps.words;
   }
   getPaginatedWords = (page) => {
     return this.props.fetchWords(page, defaultItemsPerPage);
   };
-  componentWillReceiveProps(nextProps) {
-    if (this.props.words != nextProps.words) {
-      const { history, words } = this.props;
-
-      if (words.currentPage !== nextProps.words.currentPage && history) {
-        this.props.history.push(`/list/page/${nextProps.words.currentPage}`);
-      }
-    }
-  }
   render() {
     let { items, total, currentPage, itemsPerPage, loading } = this.props.words;
 

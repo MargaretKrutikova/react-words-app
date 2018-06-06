@@ -22,12 +22,15 @@ class WordEntity {
     this._id = word ? word._id : undefined;
     this.value = word ? word.value : '';
 
-    this.translations = (word && word.translations) || [];
-    this.explanations = (word && word.explanations) || [];
-    this.usages = (word && word.usages) || [];
+    this.translations = this.copyOrEmpty(word ? word.translations : null);
+    this.explanations = this.copyOrEmpty(word ? word.explanations : null);
+    this.usages = this.copyOrEmpty(word ? word.usages : null);
 
     this.createdDate = word ? word.createdDate : new Date();
     this.updatedDate = word ? word.updatedDate : new Date();
+  }
+  copyOrEmpty<T>(array: ?Array<T>): Array<T> {
+    return !array ? [] : [...array];
   }
 }
 

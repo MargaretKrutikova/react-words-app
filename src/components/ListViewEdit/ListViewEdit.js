@@ -2,25 +2,30 @@ import objectAssign from 'object-assign';
 import React, { PureComponent } from 'react';
 import './_ListViewEdit.scss';
 
+const defaultIfEmpty = (list) => {
+  if (!list || list.length === 0) {
+    // add empty element to display one input in case the list is empty
+    return [''];
+  }
+  return list;
+}
+const copyList = (list) => {
+  const copy = (list || []).slice();
+  return defaultIfEmpty(copy);
+}
+
 class ListViewEdit extends PureComponent {
   state = {
     values: []
   };
-  componentDidMount() {
-    this.setState({ values: this.copyList(this.props.list) });
-  }
-  componentWillReceiveProps(nextProps) {
-    if (this.props.list != nextProps.list) {
-      this.setState({ values: this.copyList(nextProps.list) });
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (nextProps.list !== prevState.originalList) {
+      return {
+        values: copyList(nextProps.list),
+        originalList: nextProps.list
+      };
     }
-  }
-
-  copyList = (list) => {
-    let copy = (list || []).slice();
-    // add empty element to display one input in case the list is empty
-    if (copy.length === 0) copy.push('');
-
-    return copy;
+    return null;
   }
   notifyParentOnChange = () => {
     this.props.onChange(this.state.values);
@@ -30,16 +35,14 @@ class ListViewEdit extends PureComponent {
       values: objectAssign([...prevState.values], { [index]: newValue })
     }), this.notifyParentOnChange);
   }
-
   addListValue = () => {
     this.setState((prevState) => ({
       values: prevState.values.concat([''])
     }), this.notifyParentOnChange);
   }
-
   removeListValue = (indexToRemove) => {
     this.setState((prevState) => ({
-      values: prevState.values.filter((val, ind) => (ind != indexToRemove))
+      values: defaultIfEmpty(prevState.values.filter((val, ind) => (ind != indexToRemove)))
     }), this.notifyParentOnChange);
   }
   render() {

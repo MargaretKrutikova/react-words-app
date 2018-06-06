@@ -6,16 +6,17 @@ import PageHeader from '../Header/PageHeader';
 import './_WordForm.scss';
 
 class WordForm extends PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = {
-      word: new WordEntity(props.word)
-    };
+  state = {
+    word: new WordEntity()
   }
-  componentWillReceiveProps(nextProps) {
-    this.setState({
-      word: new WordEntity(nextProps.word)
-    });
+  static getDerivedStateFromProps(nextProps, prevState) {
+    if (nextProps.word !== prevState.lastWord) {
+      return {
+        word: new WordEntity(nextProps.word),
+        lastWord: nextProps.word
+      };
+    }
+    return null;
   }
   onWordValueChanged = (event) => {
     const newValue = event.target.value;
