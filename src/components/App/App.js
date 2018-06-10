@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter as Router, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
 import Main from '../Main/Main';
@@ -13,7 +13,9 @@ const App = () => (
     <Router>
       <React.Fragment>
         <Header />
-        <Main />
+        <Switch>
+          <Main />
+        </Switch>
       </React.Fragment>
     </Router>
   </Provider>

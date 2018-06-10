@@ -19,8 +19,8 @@ class Header extends React.Component {
   }
   render() {
     return (
-      <header className="navbar navbar-expand-lg sticky-top navbar-light bg-light" 
-        tabIndex="1" 
+      <header className="navbar navbar-expand-lg sticky-top navbar-light bg-light"
+        tabIndex="1"
         onBlur={this.onBlur}>
         <div className="container">
           <NavLink className="navbar-brand" to='/'>Words</NavLink>
@@ -31,10 +31,10 @@ class Header extends React.Component {
           <nav className={!this.state.isVisibleNavigation ? 'collapse navbar-collapse' : 'navbar-collapse'}>
             <ul className='navbar-nav mr-auto'>
               <li className="nav-item"><NavLink className="nav-link" exact to='/'>Home</NavLink></li>
-              <li className="nav-item"><NavLink className="nav-link" to='/list'>Words</NavLink></li>
+              <li className="nav-item"><NavLink className="nav-link" to='/list/page'>Words</NavLink></li>
               <li className="nav-item"><NavLink className="nav-link" to='/add'>Add</NavLink></li>
             </ul>
-          </nav> 
+          </nav>
         </div>
       </header>
     );

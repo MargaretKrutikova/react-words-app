@@ -9,7 +9,7 @@ const Main = () => (
     <div className='row'>
       <section className="col-xs-12 col-sm-12 col-md-6">
         <Route exact path='/' component={WordsContainer} />
-        <Route path='/list/(page/:page)?' component={WordsContainer} />
+        <Route path='/list/page/:page?' component={WordsContainer} />
       </section>
 
       {['/add', '/edit/:wordId'].map((path, ind) =>
