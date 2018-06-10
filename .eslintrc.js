@@ -15,7 +15,7 @@ module.exports = {
     },
     sourceType: 'module',
   },
-  plugins: ['react'],
+  plugins: ['react', 'flowtype'],
   rules: {
     'react/prop-types': ['off'],
     'no-console': 'off',
@@ -25,6 +25,17 @@ module.exports = {
     semi: ['error', 'always'],
     'no-console': ['warn', { allow: ['info', 'error'] }],
     'arrow-parens': ['error', 'always'],
-    'linebreak-style': ["error", "windows"]
+    'linebreak-style': ["error", "windows"],
+    "flowtype/define-flow-type": 1,
+    "flowtype/space-before-type-colon": [
+      1,
+      "never"
+    ],
+    "flowtype/use-flow-type": 1,
+    "flowtype/valid-syntax": 1,
+    "flowtype/type-id-match": [
+      2,
+      "^([A-Z]+[a-z0-9A-Z]*)$"
+    ]
   },
 };

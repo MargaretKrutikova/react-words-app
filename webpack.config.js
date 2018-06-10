@@ -10,17 +10,14 @@ const buildWebpackConfig = (env) => {
   const isProduction = process.argv.indexOf('-p') !== -1;
 
   const MiniCssExtractPluginConfig = new MiniCssExtractPlugin({
-    filename: 'site.css',
-    allChunks: true,
-    disable: isHot
+    filename: 'site.css'
   });
-
   const HtmlWebpackPluginConfig = new HtmlWebpackPlugin({
     template: './index.html',
     filename: 'index.html',
     inject: 'body'
   });
-  const plugins = [MiniCssExtractPluginConfig, HtmlWebpackPluginConfig, new Dotenv()];
+  const plugins = [HtmlWebpackPluginConfig, new Dotenv(), MiniCssExtractPluginConfig];
 
   let sourceMaps = !isProduction;
   let minimize = isProduction;
@@ -55,16 +52,16 @@ const buildWebpackConfig = (env) => {
 
   return {
     entry: webpackEntry,
-    optimization: enableHotReload && {
+    optimization: !enableHotReload ? {
       splitChunks: {
         cacheGroups: {
-          commons: {
+          vendor: {
             name: 'vendor',
             chunks: 'all'
           }
         }
       }
-    },
+    } : {},
     output: {
       path: path.resolve(__dirname, 'public'),
       filename: '[name].js',
@@ -95,7 +92,7 @@ const buildWebpackConfig = (env) => {
         {
           test: /\.(css|sass|scss)$/,
           use: [
-            MiniCssExtractPlugin.loader,
+            { loader: enableHotReload ? 'style-loader' : MiniCssExtractPlugin.loader },
             {
               loader: 'css-loader',
               options: {
