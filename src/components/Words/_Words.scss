@@ -1,4 +1,15 @@
+@import '../../styles/utils/_bootstrap-utils';
+
 .words-list {
+  display: flex;
+  flex-direction: column;
+
+  .spinner-icon {
+    align-self: center;
+    path {
+      stroke: #3be8b0
+    }
+  }
   @mixin list-item-border($side) {
     border-#{$side} :1px solid rgba(200, 200, 200, 0.6);
   }
