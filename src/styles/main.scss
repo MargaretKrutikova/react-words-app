@@ -1,5 +1,6 @@
 @import "~bootstrap/scss/bootstrap.scss";
 
 /** BASE **/
-@import 'base/fonts',
+@import 'base/base',
+        'base/fonts',
         'base/typography';
