@@ -18,24 +18,24 @@ const initialState = {
 
 // Action creators
 const actions = {
-  requestWords: (page, itemsPerPage) => ({ 
-    type: REQUEST_WORDS, 
-    payload : { pageToLoad: page, itemsPerPage }
+  requestWords: (page, itemsPerPage) => ({
+    type: REQUEST_WORDS,
+    payload: { pageToLoad: page, itemsPerPage, currentPage: page }
   }),
-  requestWordsSuccess: (items, total, page) => ({ 
-    type: REQUEST_WORDS_SUCCESS, 
-    payload : { currentPage: page, total, pageToLoad: undefined, items }
+  requestWordsSuccess: (items, total, page) => ({
+    type: REQUEST_WORDS_SUCCESS,
+    payload: { currentPage: page, total, pageToLoad: undefined, items }
   }),
-  requestWordsFailure: (error) => ({ 
-    type: REQUEST_WORDS_FAILURE, 
-    payload : { error }
+  requestWordsFailure: (error) => ({
+    type: REQUEST_WORDS_FAILURE,
+    payload: { error }
   })
 };
 
 
 // Async action creator
-export const fetchWords = function(page, itemsPerPage) {
-  return function(dispatch) {
+export const fetchWords = function (page, itemsPerPage) {
+  return function (dispatch) {
     dispatch(actions.requestWords(page, itemsPerPage));
 
     return WordServiceApi.getWords(page, itemsPerPage).then(
@@ -49,7 +49,7 @@ export const fetchWords = function(page, itemsPerPage) {
 const words = (state = initialState, action) => {
   switch (action.type) {
     case REQUEST_WORDS:
-      return { ...state, ...{ loading: true, error: null}, ...action.payload };
+      return { ...state, ...{ loading: true, error: null }, ...action.payload };
 
     case REQUEST_WORDS_SUCCESS:
     case REQUEST_WORDS_FAILURE:
