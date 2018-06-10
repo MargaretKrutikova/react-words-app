@@ -56,7 +56,11 @@ const buildWebpackConfig = (env) => {
       splitChunks: {
         cacheGroups: {
           vendor: {
-            name: 'vendor',
+            test: /node_modules/,
+            chunks: "initial",
+            name: "vendor",
+            priority: 10,
+            enforce: true,
             chunks: 'all'
           }
         }
