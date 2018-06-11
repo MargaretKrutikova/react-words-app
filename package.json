@@ -6,7 +6,7 @@
   "scripts": {
     "nodemon": "nodemon --exec babel-node server.js --plugins=transform-class-properties,transform-object-rest-spread --presets=react,env --env={'targets': {'node': 'current' }} --ignore public/",
     "webpack": "webpack -wd",
-    "build-webpack": "cross-env NODE_ENV=production webpack -p",
+    "build-webpack": "./node_modules/.bin/cross-env NODE_ENV=production webpack -p",
     "test": "cross-env NODE_ENV=test jest --watchAll",
     "dev": "webpack -d --env.hot && webpack-dev-server -d --hot --history-api-fallback --open --content-base ./public"
   },
