@@ -1,0 +1,20 @@
+@import '../../styles/base/_transitions';
+
+.modal-backdrop {
+  opacity: 0.5;
+}
+.modal {
+  @include css-transition(opacity, 0.01, 1, linear);
+}
+.modal-overlay {
+  @include css-transition(opacity, 0.01, 0.5, linear);
+}
+.modal-dialog {
+  @include css-transition(
+    transform, 
+    translate(0,-25%),
+    translate(0,0),
+    ease-out,
+    300ms
+    );
+}
