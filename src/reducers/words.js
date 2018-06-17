@@ -46,7 +46,7 @@ export const fetchWords = function (page, itemsPerPage) {
 };
 
 
-const words = (state = initialState, action) => {
+const reducer = (state = initialState, action) => {
   switch (action.type) {
     case REQUEST_WORDS:
       return { ...state, ...{ loading: true, error: null }, ...action.payload };
@@ -60,4 +60,4 @@ const words = (state = initialState, action) => {
   }
 };
 
-export default words;
+export default reducer;

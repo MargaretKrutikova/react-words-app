@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchWords } from '../../reducers/wordsReducer';
+import { fetchWords } from '../../reducers/words';
 
 import Words from './Words';
 import { Paginator } from '../Paginator';
