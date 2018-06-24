@@ -73,7 +73,8 @@ class WordForm extends PureComponent {
           <ProgressButton
             isLoading={this.props.isSaving}
             className='btn btn-default btn-primary mr-4'
-            onClick={this.saveWord}>
+            style={{ width: 60 }}
+            onClick={() => this.saveWord()}>
             Save
           </ProgressButton>
           <button className='btn btn-default btn-danger' onClick={this.props.cancel}>{isEditingMode ? 'Revert' : 'Cancel'}</button>
