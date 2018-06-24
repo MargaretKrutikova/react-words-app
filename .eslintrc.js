@@ -10,7 +10,7 @@ module.exports = {
   extends: ['eslint:recommended', 'plugin:react/recommended'],
   parserOptions: {
     ecmaFeatures: {
-      "ecmaVersion": 6,
+      "ecmaVersion": 2017,
       experimentalObjectRestSpread: true,
       "jsx": true,
       "modules": true,
@@ -33,7 +33,6 @@ module.exports = {
     'arrow-parens': ['error', 'always'],
     'linebreak-style': ["error", "windows"],
     "no-unused-vars": 1,
-    "no-console": 0,
     "semi": 0,
     "quotes": [2, "single", { "allowTemplateLiterals": true }],
     "flowtype/boolean-style": [
@@ -51,19 +50,12 @@ module.exports = {
     ],
     "flowtype/no-primitive-constructor-types": 2,
     "flowtype/no-types-missing-file-annotation": 2,
-    "flowtype/no-weak-types": 2,
+    "flowtype/no-weak-types": 1,
     "flowtype/object-type-delimiter": [
       2,
       "comma"
     ],
     "flowtype/require-parameter-type": 2,
-    "flowtype/require-return-type": [
-      2,
-      "always",
-      {
-        "annotateUndefined": "never"
-      }
-    ],
     "flowtype/require-valid-file-annotation": 2,
     "flowtype/semi": [
       2,
@@ -80,10 +72,6 @@ module.exports = {
     "flowtype/space-before-type-colon": [
       2,
       "never"
-    ],
-    "flowtype/type-id-match": [
-      2,
-      "^([A-Z][a-z0-9]+)+Type$"
     ],
     "flowtype/union-intersection-spacing": [
       2,

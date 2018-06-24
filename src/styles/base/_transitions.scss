@@ -19,3 +19,7 @@
       transition: #{$property-name} #{$duration} #{$timing-fn};
     }
 }
+
+.fade-in {
+  @include css-transition(opacity, 0, 1, ease-in-out, 500ms);
+}

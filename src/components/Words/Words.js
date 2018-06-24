@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Word from './Word';
 import PageHeader from '../Header/PageHeader';
-import SpinnerIcon from '../Icons/SpinnerIcon';
+import InfinityIcon from '../Shared/Icons/InfinityIcon';
 import './_Words.scss';
 
 const Words = (props) => (
@@ -12,7 +12,7 @@ const Words = (props) => (
     {props.loading &&
       <React.Fragment>
         <h4>Loading...</h4>
-        <SpinnerIcon className='spinner-icon' width={200} height={200} />
+        <InfinityIcon className='spinner-icon' width={200} height={200} />
       </ React.Fragment>
     }
 

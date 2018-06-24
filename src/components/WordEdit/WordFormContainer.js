@@ -3,22 +3,24 @@ import React, { PureComponent } from 'react';
 import { WordEntity, WordServiceApi } from 'Services/Words';
 import WordForm from './WordForm';
 
-type Props = {
+type PropsType = {
   history: { push: (url: string) => void },
   match: { params: any }
-}
+};
 
-type State = {
+type StateType = {
   wordId: ?string,
   isError: boolean,
+  isSaving: boolean,
   word: WordEntity
-}
+};
 
-class WordFormContainer extends PureComponent<Props, State> {
+class WordFormContainer extends PureComponent<PropsType, StateType> {
   originalWord: WordEntity;
   state = {
     word: new WordEntity(),
     wordId: undefined,
+    isSaving: false,
     isError: false
   }
   componentDidMount() {
@@ -28,7 +30,7 @@ class WordFormContainer extends PureComponent<Props, State> {
     // 'edit' mode
     if (wordId) {
       WordServiceApi.getWord(wordId)
-        .then((wordEntity) => {
+        .then((wordEntity: WordEntity) => {
           this.setState({
             word: wordEntity,
             wordId: wordEntity._id
@@ -43,8 +45,11 @@ class WordFormContainer extends PureComponent<Props, State> {
         });
     }
   }
-  saveChanges = (word: WordEntity) => {
-    WordServiceApi.saveWord(word);
+  saveChanges = async (word: WordEntity) => {
+    this.setState({ isSaving: true });
+    await WordServiceApi.saveWord(word);
+
+    this.setState({ isSaving: false });
   }
   isEditMode = () => {
     return this.state.wordId != undefined;
@@ -65,6 +70,7 @@ class WordFormContainer extends PureComponent<Props, State> {
             word={this.state.word}
             mode={this.isEditMode() ? 'edit' : 'add'}
             save={this.saveChanges}
+            isSaving={this.state.isSaving}
             cancel={this.cancelChanges}
           />)
         }

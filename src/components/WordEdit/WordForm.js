@@ -3,11 +3,13 @@ import PropTypes from 'prop-types';
 import { WordEntity } from 'Services/Words';
 import ListViewEdit from '../ListViewEdit/ListViewEdit';
 import PageHeader from '../Header/PageHeader';
+import ProgressButton from '../Shared/Buttons/ProgressButton';
 import './_WordForm.scss';
 
 class WordForm extends PureComponent {
   state = {
-    word: new WordEntity()
+    word: new WordEntity(),
+    isLoading: false
   }
   static getDerivedStateFromProps(nextProps, prevState) {
     if (nextProps.word !== prevState.lastWord) {
@@ -25,9 +27,11 @@ class WordForm extends PureComponent {
   onWordPropertyChanged = (propertyName, propertyValue) => {
     this.setState((prevState) => ({ word: { ...prevState.word, ...{ [propertyName]: propertyValue } } }));
   }
+  saveWord = () => {
+    this.props.save(this.state.word);
+  }
   render() {
     const isEditingMode = this.props.mode === 'edit';
-
     return (
       <div className='px-3 my-4 mr-auto border rounded bg-light word-form' id="word-form">
         <PageHeader>{isEditingMode ? 'Edit word' : 'Add word'}</PageHeader>
@@ -65,8 +69,13 @@ class WordForm extends PureComponent {
             onChange={this.onWordPropertyChanged.bind(this, 'usages')}
           />
         </div>
-        <div className='mb-4 mt-2'>
-          <button className='btn btn-default btn-primary mr-4' onClick={() => this.props.save(this.state.word)}>Save</button>
+        <div className='mb-4 mt-2 d-flex'>
+          <ProgressButton
+            isLoading={this.props.isSaving}
+            className='btn btn-default btn-primary mr-4'
+            onClick={this.saveWord}>
+            Save
+          </ProgressButton>
           <button className='btn btn-default btn-danger' onClick={this.props.cancel}>{isEditingMode ? 'Revert' : 'Cancel'}</button>
         </div>
       </div>
