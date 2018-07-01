@@ -57,8 +57,7 @@ const buildWebpackConfig = (env) => {
         cacheGroups: {
           vendor: {
             test: /node_modules/,
-            chunks: "initial",
-            name: "vendor",
+            name: 'vendor',
             priority: 10,
             enforce: true,
             chunks: 'all'
@@ -74,7 +73,9 @@ const buildWebpackConfig = (env) => {
     plugins: plugins,
     resolve: {
       alias: {
-        'Services': path.resolve(__dirname, './src/services/')
+        'Services': path.resolve(__dirname, './src/services/'),
+        'Reducers': path.resolve(__dirname, './src/reducers/'),
+        'Shared': path.resolve(__dirname, './src/components/Shared/')
       }
     },
     module: {

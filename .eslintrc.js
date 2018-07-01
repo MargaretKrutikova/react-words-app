@@ -21,7 +21,7 @@ module.exports = {
     },
     sourceType: 'module',
   },
-  plugins: ['react', 'flowtype'],
+  plugins: ['react', 'flowtype', 'eslint-plugin-flowtype'],
   rules: {
     'react/prop-types': ['off'],
     'no-console': 'off',

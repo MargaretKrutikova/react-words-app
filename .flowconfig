@@ -3,10 +3,13 @@
 [include]
 
 [libs]
+flow-typed
 
 [lints]
 
 [options]
 module.name_mapper='^Services\([-a-zA-Z0-9$_/]+\)$' -> '<PROJECT_ROOT>/src/services/\1'
+module.name_mapper='^Reducers\([-a-zA-Z0-9$_/]+\)$' -> '<PROJECT_ROOT>/src/reducers/\1'
+module.name_mapper='^Shared\([-a-zA-Z0-9$_/]+\)$' -> '<PROJECT_ROOT>/src/components/Shared/\1'
 
 [strict]
