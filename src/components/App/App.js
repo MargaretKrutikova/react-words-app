@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 
 import Main from '../Main/Main';
 import Header from '../Header/Header';
-import ModalRoot from '../Modals/ModalRoot';
+import ModalRoot from 'Shared/Modals/ModalRoot';
 import configureStore from '../../store/configureStore';
 
 const store = configureStore();
