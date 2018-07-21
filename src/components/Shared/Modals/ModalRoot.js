@@ -1,10 +1,12 @@
-// @flow
+/* @flow */
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { getModals, hideModal, removeModal, MODAL_TYPE } from 'Reducers/modals';
+import { getModals, hideModal, removeModal } from 'Reducers/modals';
 import ConfirmationModal from './Types/ConfirmationModal';
-import type { Modal } from 'Reducers/modals';
+import StandardModal from './Types/StandardModal';
+import { MODAL_TYPE } from './types';
+import type { Modal } from './types';
 import type { GlobalState } from 'Reducers/';
 
 // types
@@ -16,30 +18,32 @@ type ModalRootProps = {
 type ModalMappingKey = $Keys<typeof MODAL_TYPE>;
 
 type ModalMapping = {
-  [key: ModalMappingKey]: React.Element<typeof React.Component>
+  [key: ModalMappingKey]: React$ComponentType<any>
 };
 
 const MODAL_MAPPING: ModalMapping = {
-  [MODAL_TYPE.CONFIRMATION]: ConfirmationModal
+  [MODAL_TYPE.CONFIRMATION]: ConfirmationModal,
+  [MODAL_TYPE.STANDARD]: StandardModal
 };
 
 const ModalRoot = ({ modals, hideModal, removeModal }: ModalRootProps) => {
   const renderedModals = modals.map((modal: Modal) => {
-    const ModalComponent = MODAL_MAPPING[modal.type];
+    const { props, type } = modal.modalProps;
+    const ModalComponent = MODAL_MAPPING[type];
 
     return ModalComponent ? (
-      <ConfirmationModal
+      <ModalComponent
+        {...props}
         key={modal.id}
-        {...modal.props}
         isOpen={modal.isOpen}
         onTransitionExited={() => removeModal(modal.id)}
         onClose={() => hideModal(modal.id)}
       />
-    ) : null
+    ) : null;
   });
 
-  return (<React.Fragment>{renderedModals}</React.Fragment>);
-}
+  return <React.Fragment>{renderedModals}</React.Fragment>;
+};
 
 const mapStateToProps = (state: GlobalState) => ({
   modals: getModals(state)
@@ -54,4 +58,7 @@ ModalRoot.propTypes = {
   modals: PropTypes.array.isRequired
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ModalRoot);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ModalRoot);
