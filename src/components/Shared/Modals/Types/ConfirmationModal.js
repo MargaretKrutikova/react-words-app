@@ -14,7 +14,9 @@ export type ConfirmationModalOwnProps = {
 export type ConfirmationModalProps = ModalLayoutProps &
   ConfirmationModalOwnProps;
 
-const ConfirmationModal = (props: ConfirmationModalProps) => {
+const ConfirmationModal: React$ComponentType<ConfirmationModalProps> = (
+  props: ConfirmationModalProps
+) => {
   const {
     title,
     confirmText,

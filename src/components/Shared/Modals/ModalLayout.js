@@ -14,7 +14,10 @@ type ModalLayoutState = {
 export type ModalLayoutProps = {
   isOpen: boolean,
   onClose: () => void,
-  onTransitionExited: () => void,
+  onTransitionExited: () => void
+};
+
+type ModalLayoutOwnProps = ModalLayoutProps & {
   children: React.Node
 };
 
@@ -22,7 +25,10 @@ const KEYCODES = {
   ESCAPE: 27
 };
 
-class ModalLayout extends React.Component<ModalLayoutProps, ModalLayoutState> {
+class ModalLayout extends React.Component<
+  ModalLayoutOwnProps,
+  ModalLayoutState
+> {
   defaultProps = {
     onClose: () => {},
     onTransitionExited: () => {}

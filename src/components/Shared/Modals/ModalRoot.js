@@ -8,6 +8,7 @@ import StandardModal from './Types/StandardModal';
 import { MODAL_TYPE } from './types';
 import type { Modal } from './types';
 import type { GlobalState } from 'Reducers/';
+import type { ModalLayoutProps } from './ModalLayout';
 
 // types
 type ModalRootProps = {
@@ -18,7 +19,7 @@ type ModalRootProps = {
 type ModalMappingKey = $Keys<typeof MODAL_TYPE>;
 
 type ModalMapping = {
-  [key: ModalMappingKey]: React$ComponentType<any>
+  [key: ModalMappingKey]: React$ComponentType<$Subtype<ModalLayoutProps>>
 };
 
 const MODAL_MAPPING: ModalMapping = {

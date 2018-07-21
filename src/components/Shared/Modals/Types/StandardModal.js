@@ -12,7 +12,9 @@ export type StandardModalOwnProps = {
 
 export type StandardModalProps = ModalLayoutProps & StandardModalOwnProps;
 
-const StandardModal = (props: StandardModalProps) => {
+const StandardModal: React$ComponentType<StandardModalProps> = (
+  props: StandardModalProps
+) => {
   const { Header, Body, Footer, onClose, ...rest } = props;
   return (
     <ModalLayout onClose={onClose} {...rest}>
