@@ -1,7 +1,7 @@
 // @flow
 import shortId from 'shortid';
-import type { GlobalState } from './';
-import type { Modal, ModalTypeProps } from '../components/Shared/Modals/types';
+import type { GlobalState } from 'Reducers/';
+import type { Modal, ModalTypeProps } from '../types';
 
 export type ModalState = Array<Modal>;
 

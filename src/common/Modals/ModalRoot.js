@@ -2,7 +2,7 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { getModals, hideModal, removeModal } from 'Reducers/modals';
+import { getModals, hideModal, removeModal } from './redux/reducer';
 import ConfirmationModal from './Types/ConfirmationModal';
 import StandardModal from './Types/StandardModal';
 import { MODAL_TYPE } from './types';

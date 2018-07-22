@@ -1,4 +1,4 @@
-@import '../../../styles/base/_transitions';
+@import "../../styles/base/_transitions";
 
 .modal-backdrop {
   opacity: 0.5;
@@ -11,10 +11,10 @@
 }
 .modal-dialog {
   @include css-transition(
-    transform, 
-    translate(0,-25%),
-    translate(0,0),
+    transform,
+    translate(0, -25%),
+    translate(0, 0),
     ease-out,
     300ms
-    );
+  );
 }

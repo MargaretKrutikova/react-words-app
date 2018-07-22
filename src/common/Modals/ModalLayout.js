@@ -29,7 +29,7 @@ class ModalLayout extends React.Component<
   ModalLayoutOwnProps,
   ModalLayoutState
 > {
-  defaultProps = {
+  static defaultProps = {
     onClose: () => {},
     onTransitionExited: () => {}
   };

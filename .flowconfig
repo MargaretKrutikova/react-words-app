@@ -10,7 +10,7 @@ flow-typed
 [options]
 module.name_mapper='^Services\([-a-zA-Z0-9$_/]+\)$' -> '<PROJECT_ROOT>/src/services/\1'
 module.name_mapper='^Reducers\([-a-zA-Z0-9$_/]+\)$' -> '<PROJECT_ROOT>/src/reducers/\1'
-module.name_mapper='^Shared\([-a-zA-Z0-9$_/]+\)$' -> '<PROJECT_ROOT>/src/components/Shared/\1'
+module.name_mapper='^Common\([-a-zA-Z0-9$_/]+\)$' -> '<PROJECT_ROOT>/src/common/\1'
 module.system.node.resolve_dirname=./src
 module.system.node.resolve_dirname=node_modules
 module.file_ext=.js
