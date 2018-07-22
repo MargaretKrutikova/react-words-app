@@ -5,7 +5,7 @@ import { CSSTransition } from 'react-transition-group';
 import { Portal } from 'react-portal';
 import './_Toast.scss';
 
-const AUTO_CLOSE = 20000;
+const AUTO_CLOSE_TIMEOUT = 5000;
 const TOAST_DISTANCE = 60;
 
 // types
@@ -20,24 +20,41 @@ type ToastProps = {
 };
 
 class Toast extends React.Component<ToastProps, ToastState> {
-  autoCloseTimeout = undefined;
+  static propTypes = {
+    message: PropTypes.string.isRequired,
+    type: PropTypes.string.isRequired,
+    position: PropTypes.number.isRequired,
+    onClose: PropTypes.func.isRequired
+  };
+  autoCloseTimeout: TimeoutID;
   state = {
     isOpen: false
   };
   componentDidMount() {
     this.setState({ isOpen: true });
-    //this.autoCloseTimeout = setTimeout(() => {
-    //  this.setState({ isOpen: false });
-    //}, AUTO_CLOSE);
+
+    this.autoCloseTimeout = setTimeout(() => {
+      this.setState({ isOpen: false });
+    }, AUTO_CLOSE_TIMEOUT);
+  }
+  componentWillUnmount() {
+    this.clearTimeout();
   }
   onTransitionExited = () => {
     this.props.onClose();
   };
+  clearTimeout = () => {
+    if (this.autoCloseTimeout) {
+      clearTimeout(this.autoCloseTimeout);
+    }
+  };
   dismiss = () => {
     this.setState({ isOpen: false });
+    this.clearTimeout();
   };
+  calculateToastTop = () => TOAST_DISTANCE * (this.props.position + 1);
   render() {
-    const { message, type, position } = this.props;
+    const { message, type } = this.props;
 
     return (
       <CSSTransition
@@ -47,17 +64,15 @@ class Toast extends React.Component<ToastProps, ToastState> {
         timeout={350}
         onExited={this.props.onClose}
       >
-        {(state: string) => (
-          <Portal>
-            <div
-              className=" alert alert-success toast"
-              style={{ top: TOAST_DISTANCE * (position + 1) }}
-              onClick={this.dismiss}
-            >
-              {message}
-            </div>
-          </Portal>
-        )}
+        <Portal>
+          <div
+            className={`alert alert-${type} toast`}
+            style={{ top: this.calculateToastTop() }}
+            onClick={this.dismiss}
+          >
+            {message}
+          </div>
+        </Portal>
       </CSSTransition>
     );
   }

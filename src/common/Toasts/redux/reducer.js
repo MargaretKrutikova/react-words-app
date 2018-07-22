@@ -3,7 +3,19 @@ import shortId from 'shortid';
 import type { GlobalState } from 'Reducers/';
 
 // flow types
-type ToastProps = { type: string, message: string };
+export const TOAST_TYPE = Object.freeze({
+  SUCCESS: 'success',
+  WARNING: 'warning',
+  ERROR: 'danger',
+  PRIMARY: 'primary',
+  SECONDARY: 'secondary',
+  INFO: 'info',
+  LIGHT: 'light',
+  DARK: 'dark'
+});
+export type ToastType = $Values<typeof TOAST_TYPE>;
+
+type ToastProps = { type: ToastType, message: string };
 export type Toast = { id: string, props: ToastProps };
 
 export type ToastState = Array<Toast>;
@@ -22,7 +34,7 @@ const initialState: ToastState = [];
 
 // Action creators
 export const showToast = (
-  toastType: string,
+  toastType: ToastType,
   message: string
 ): ShowToastAction => ({
   type: SHOW_TOAST,
