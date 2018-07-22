@@ -4,7 +4,8 @@ import { Provider } from 'react-redux';
 
 import Main from '../Main/Main';
 import Header from '../Header/Header';
-import ModalRoot from 'Shared/Modals/ModalRoot';
+import { ModalRoot } from 'Common/Modals';
+import { ToastRoot } from 'Common/Toasts';
 import configureStore from '../../store/configureStore';
 
 const store = configureStore();
@@ -18,6 +19,7 @@ const App = () => (
           <Main />
         </Switch>
         <ModalRoot />
+        <ToastRoot />
       </React.Fragment>
     </Router>
   </Provider>
