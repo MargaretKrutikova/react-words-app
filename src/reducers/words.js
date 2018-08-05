@@ -73,15 +73,18 @@ const actions = {
 };
 
 // Async action creator
-export const fetchWords = function(page: number, itemsPerPage: number) {
+export const fetchWords = (page: number, itemsPerPage: number) => {
   return function(dispatch: Dispatch) {
     dispatch(actions.requestWords(page, itemsPerPage));
 
-    return WordServiceApi.getWords(page, itemsPerPage).then(
-      (data: PaginatedWords) =>
-        dispatch(actions.requestWordsSuccess(data.items, data.total, page)),
-      (error: Error) => dispatch(actions.requestWordsFailure(error))
-    );
+    return WordServiceApi.getWords(page, itemsPerPage)
+      .then((data: PaginatedWords) =>
+        dispatch(actions.requestWordsSuccess(data.items, data.total, page))
+      )
+      .catch((error: Error) => {
+        dispatch(actions.requestWordsFailure(error));
+        throw error;
+      });
   };
 };
 
