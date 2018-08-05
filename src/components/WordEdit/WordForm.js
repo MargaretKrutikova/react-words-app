@@ -1,31 +1,47 @@
+// @flow
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { WordEntity } from 'Services/Words';
+import type { WordType } from 'Services/Words';
+import { WordTypeFactory, WordTypeShape } from 'Services/Words';
 import ListViewEdit from '../ListViewEdit/ListViewEdit';
 import PageHeader from '../Header/PageHeader';
 import ProgressButton from 'Common/Buttons/ProgressButton';
 import './_WordForm.scss';
 
-class WordForm extends PureComponent {
+// types
+type PropsType = {
+  word: WordType,
+  save: (word: WordType) => Promise<void>,
+  cancel: () => void,
+  isSaving: boolean,
+  mode: 'add' | 'edit'
+};
+
+type StateType = {
+  word: WordType,
+  lastWord: ?WordType
+};
+
+class WordForm extends PureComponent<PropsType, StateType> {
   state = {
-    word: new WordEntity(),
-    isLoading: false
+    word: WordTypeFactory.createWord(),
+    lastWord: undefined
   };
-  static getDerivedStateFromProps(nextProps, prevState) {
+  static getDerivedStateFromProps(nextProps: PropsType, prevState: StateType) {
     if (nextProps.word !== prevState.lastWord) {
       return {
-        word: new WordEntity(nextProps.word),
+        word: WordTypeFactory.copyWord(nextProps.word),
         lastWord: nextProps.word
       };
     }
     return null;
   }
-  onWordValueChanged = (event) => {
+  onWordValueChanged = (event: SyntheticInputEvent<EventTarget>) => {
     const newValue = event.target.value;
     this.onWordPropertyChanged('value', newValue);
   };
-  onWordPropertyChanged = (propertyName, propertyValue) => {
-    this.setState((prevState) => ({
+  onWordPropertyChanged = (propertyName: string, propertyValue: string) => {
+    this.setState((prevState: StateType) => ({
       word: { ...prevState.word, ...{ [propertyName]: propertyValue } }
     }));
   };
@@ -96,8 +112,10 @@ class WordForm extends PureComponent {
 }
 
 WordForm.propTypes = {
-  word: PropTypes.instanceOf(WordEntity).isRequired,
+  word: PropTypes.shape(WordTypeShape).isRequired,
   save: PropTypes.func.isRequired,
+  cancel: PropTypes.func.isRequired,
+  isSaving: PropTypes.bool,
   mode: PropTypes.oneOf(['add', 'edit']).isRequired
 };
 

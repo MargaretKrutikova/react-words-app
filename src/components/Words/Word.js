@@ -1,11 +1,22 @@
+// @flow
 import React from 'react';
 import PropTypes from 'prop-types';
-import { WordEntity } from 'Services/Words';
+import type { WordType } from 'Services/Words';
+import { WordTypeShape } from 'Services/Words';
 
-const Word = (props) => {
+// types
+type PropsType = {
+  word: WordType
+};
+
+const Word = (props: PropsType) => {
   const word = props.word;
-  const shortProperties = [word.translations[0], word.explanations[0], word.usages[0]]
-    .filter((value) => value)
+  const shortProperties = [
+    word.translations[0],
+    word.explanations[0],
+    word.usages[0]
+  ]
+    .filter((value: string) => value)
     .join(', ');
 
   return (
@@ -17,7 +28,7 @@ const Word = (props) => {
 };
 
 Word.propTypes = {
-  word: PropTypes.instanceOf(WordEntity)
+  word: PropTypes.shape(WordTypeShape).isRequired
 };
 
 export default Word;

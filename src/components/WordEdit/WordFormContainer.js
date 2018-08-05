@@ -1,81 +1,131 @@
 // @flow
-import React, { PureComponent } from 'react';
-import { WordEntity, WordServiceApi } from 'Services/Words';
+import * as React from 'react';
+import type { ContextRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { WordServiceApi, WordTypeFactory } from 'Services/Words';
+import type { WordType } from 'Services/Words';
 import WordForm from './WordForm';
+import { actions as modalActions, MODAL_TYPE } from 'Common/Modals';
+import type { ModalTypeProps } from 'Common/Modals';
+import { actions as toastActions, TOAST_TYPE } from 'Common/Toasts';
+import type { ToastType } from 'Common/Toasts';
 
+// types
 type PropsType = {
   history: { push: (url: string) => void },
-  match: { params: any }
+  showModal: (modalProps: ModalTypeProps) => void,
+  showToast: (toastType: ToastType, message: string) => void
 };
 
 type StateType = {
   wordId: ?string,
   isError: boolean,
+  isLoading: boolean,
   isSaving: boolean,
-  word: WordEntity
+  word: WordType
 };
 
-class WordFormContainer extends PureComponent<PropsType, StateType> {
-  originalWord: WordEntity;
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+  showModal: (modalProps: ModalTypeProps) =>
+    dispatch(modalActions.showModal(modalProps)),
+  showToast: (toastType: ToastType, message: string) =>
+    dispatch(toastActions.showToast(toastType, message))
+});
+
+class WordFormContainer extends React.PureComponent<
+  PropsType & ContextRouter,
+  StateType
+> {
+  originalWord: WordType;
   state = {
-    word: new WordEntity(),
+    word: WordTypeFactory.createWord(),
     wordId: undefined,
+    isLoading: false,
     isSaving: false,
     isError: false
-  }
-  componentDidMount() {
-    const wordId = this.props.match.params.wordId;
-    this.setState({ wordId });
+  };
+  async componentDidMount() {
+    const { wordId } = this.props.match.params;
+    if (!wordId) return;
 
     // 'edit' mode
-    if (wordId) {
-      WordServiceApi.getWord(wordId)
-        .then((wordEntity: WordEntity) => {
-          this.setState({
-            word: wordEntity,
-            wordId: wordEntity._id
-          });
-          this.originalWord = wordEntity;
-        })
-        .catch(() => {
-          this.setState({
-            wordId: undefined,
-            isError: true
-          });
-        });
-    }
-  }
-  saveChanges = async (word: WordEntity) => {
-    this.setState({ isSaving: true });
-    await WordServiceApi.saveWord(word);
+    this.setState({ wordId, isLoading: true });
 
-    this.setState({ isSaving: false });
-  }
-  isEditMode = () => {
-    return this.state.wordId != undefined;
-  }
-  cancelChanges = () => {
-    if (this.isEditMode()) {
-      this.setState({ word: new WordEntity(this.originalWord) });
-    } else {
-      this.props.history.push('/list');
+    try {
+      const word: WordType = await WordServiceApi.getWord(wordId);
+      this.originalWord = word;
+
+      this.setState({ word });
+    } catch (_) {
+      this.setState({ isError: true });
+      this.props.showToast(
+        TOAST_TYPE.ERROR,
+        'Wooops... An error occured while fetching your word....'
+      );
+    } finally {
+      this.setState({ isLoading: false });
     }
   }
+  isEditMode = () => this.state.wordId != undefined;
+  saveChanges = async (word: WordType) => {
+    this.setState({ isSaving: true });
+
+    try {
+      const newWord: WordType = await WordServiceApi.saveWord(word);
+      this.setState({
+        word: WordTypeFactory.copyWord(newWord),
+        wordId: newWord.id
+      });
+
+      this.props.showToast(TOAST_TYPE.SUCCESS, 'Saved successfully :)');
+    } catch (_) {
+      this.props.showToast(
+        TOAST_TYPE.ERROR,
+        'Wooops... Couldn\'t save the word! Try again and it will work :)'
+      );
+    } finally {
+      this.setState({ isSaving: false });
+    }
+  };
+  cancelChanges = () => {
+    if (!this.isEditMode()) {
+      this.props.history.push('/list');
+      return;
+    }
+    this.props.showModal({
+      type: MODAL_TYPE.CONFIRMATION,
+      props: {
+        title: 'Revert changes',
+        confirmText: 'Are you sure you want to revert made changes?',
+        confirmButtonText: 'Yeah',
+        onConfirm: () => {
+          this.setState({ word: WordTypeFactory.copyWord(this.originalWord) });
+        },
+        closeOnConfirm: true
+      }
+    });
+  };
+
   render() {
     return (
       <React.Fragment>
-        {this.state.isError ?
-          (<h3>Oooops! Some error occured.</h3>) :
-          (<WordForm
+        {this.state.isError ? (
+          <h3>Oooops! Some error occured.</h3>
+        ) : (
+          <WordForm
             word={this.state.word}
             mode={this.isEditMode() ? 'edit' : 'add'}
             save={this.saveChanges}
             isSaving={this.state.isSaving}
             cancel={this.cancelChanges}
-          />)
-        }
-      </React.Fragment>);
+          />
+        )}
+      </React.Fragment>
+    );
   }
 }
 
-export default WordFormContainer;
+export default connect(
+  null,
+  mapDispatchToProps
+)(WordFormContainer);
