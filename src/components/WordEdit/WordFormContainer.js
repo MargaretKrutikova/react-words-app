@@ -12,7 +12,6 @@ import type { ToastType } from 'Common/Toasts';
 
 // types
 type PropsType = {
-  history: { push: (url: string) => void },
   showModal: (modalProps: ModalTypeProps) => void,
   showToast: (toastType: ToastType, message: string) => void
 };

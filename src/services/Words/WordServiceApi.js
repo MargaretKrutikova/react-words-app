@@ -14,7 +14,7 @@ type PaginatedWordsApiResponse = {
 type WordApiResponse = {
   word: WordApiResponseType
 };
-type PaginatedWords = {
+export type PaginatedWords = {
   items: Array<WordType>,
   total: number
 };
