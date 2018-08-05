@@ -1,0 +1,33 @@
+@import "../../styles/utils/_bootstrap-utils";
+
+.toast {
+  max-width: 400px;
+  min-width: 150px;
+  cursor: pointer;
+  position: absolute !important;
+  right: 100px;
+  transform: scale(1);
+  transition: all 300ms ease-out;
+
+  @include media-breakpoint-down(sm) {
+    right: 10px;
+  }
+}
+.toast-enter {
+  opacity: 0.01;
+  transform: translateY(-100%) scale(0.5);
+}
+.toast-enter-active {
+  opacity: 1;
+  transform: translateY(0%) scale(1);
+  transition: all 300ms ease-out;
+}
+.toast-exit {
+  opacity: 1;
+  transform: scale(1);
+}
+.toast-exit-active {
+  opacity: 0;
+  transform: scale(0);
+  transition: all 300ms ease-in;
+}

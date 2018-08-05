@@ -17,7 +17,11 @@ const buildWebpackConfig = (env) => {
     filename: 'index.html',
     inject: 'body'
   });
-  const plugins = [HtmlWebpackPluginConfig, new Dotenv(), MiniCssExtractPluginConfig];
+  const plugins = [
+    HtmlWebpackPluginConfig,
+    new Dotenv(),
+    MiniCssExtractPluginConfig
+  ];
 
   let sourceMaps = !isProduction;
   let minimize = isProduction;
@@ -44,28 +48,31 @@ const buildWebpackConfig = (env) => {
     ];
 
     if (isProduction) {
-      plugins.push(new webpack.DefinePlugin({
-        'process.env.NODE_ENV': JSON.stringify('production')
-      }));
+      plugins.push(
+        new webpack.DefinePlugin({
+          'process.env.NODE_ENV': JSON.stringify('production')
+        })
+      );
     }
   }
 
   return {
     entry: webpackEntry,
-    optimization: !enableHotReload ? {
-      splitChunks: {
-        cacheGroups: {
-          vendor: {
-            test: /node_modules/,
-            chunks: "initial",
-            name: "vendor",
-            priority: 10,
-            enforce: true,
-            chunks: 'all'
+    optimization: !enableHotReload
+      ? {
+        splitChunks: {
+          cacheGroups: {
+            vendor: {
+              test: /node_modules/,
+              name: 'vendor',
+              priority: 10,
+              enforce: true,
+              chunks: 'all'
+            }
           }
         }
       }
-    } : {},
+      : {},
     output: {
       path: path.resolve(__dirname, 'public'),
       filename: '[name].js',
@@ -74,7 +81,9 @@ const buildWebpackConfig = (env) => {
     plugins: plugins,
     resolve: {
       alias: {
-        'Services': path.resolve(__dirname, './src/services/')
+        Services: path.resolve(__dirname, './src/services/'),
+        Reducers: path.resolve(__dirname, './src/reducers/'),
+        Common: path.resolve(__dirname, './src/common/')
       }
     },
     module: {
@@ -96,7 +105,11 @@ const buildWebpackConfig = (env) => {
         {
           test: /\.(css|sass|scss)$/,
           use: [
-            { loader: enableHotReload ? 'style-loader' : MiniCssExtractPlugin.loader },
+            {
+              loader: enableHotReload
+                ? 'style-loader'
+                : MiniCssExtractPlugin.loader
+            },
             {
               loader: 'css-loader',
               options: {
@@ -109,8 +122,9 @@ const buildWebpackConfig = (env) => {
               loader: 'postcss-loader',
               options: {
                 sourceMap: sourceMaps,
-                plugins: () =>
-                  ([require('autoprefixer')({ browsers: 'last 5 versions' })])
+                plugins: () => [
+                  require('autoprefixer')({ browsers: 'last 5 versions' })
+                ]
               }
             },
             {
@@ -119,7 +133,8 @@ const buildWebpackConfig = (env) => {
                 sourceMap: sourceMaps,
                 minimize: minimize
               }
-            }]
+            }
+          ]
         }
       ]
     }

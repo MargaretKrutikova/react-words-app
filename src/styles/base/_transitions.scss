@@ -1,0 +1,25 @@
+@mixin css-transition(
+  $property-name,
+  $from-value, 
+  $to-value, 
+  $timing-fn: ease,
+  $duration: 150ms) {
+    &-enter {
+      #{$property-name}: #{$from-value};
+    }
+    &-enter-active {
+      #{$property-name}: #{$to-value};
+      transition: #{$property-name} #{$duration} #{$timing-fn};
+    }
+    &-exit {
+      #{$property-name}: #{$to-value};
+    }
+    &-exit-active {
+      #{$property-name}: #{$from-value};
+      transition: #{$property-name} #{$duration} #{$timing-fn};
+    }
+}
+
+.fade-in {
+  @include css-transition(opacity, 0, 1, ease-in-out, 500ms);
+}

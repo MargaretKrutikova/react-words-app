@@ -1,4 +1,7 @@
+//@flow
 import WordServiceApi from './WordServiceApi';
-import WordEntity from './WordEntity';
 
-export { WordServiceApi, WordEntity };
+export { WordTypeFactory, WordTypeShape } from './WordType';
+export type { WordType } from './WordType';
+export type { PaginatedWords } from './WordServiceApi';
+export { WordServiceApi };

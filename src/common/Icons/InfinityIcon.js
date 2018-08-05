@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react';
 
-const SpinnerIcon = props => (
+const InfinityIcon = (props) => (
   <svg
-    viewBox="0 0 100 100"
+    viewBox="0 0 92 42"
     preserveAspectRatio="xMidYMid"
     width="1em"
     height="1em"
@@ -10,7 +10,7 @@ const SpinnerIcon = props => (
   >
     <path
       fill="none"
-      d="M24.3 30C11.4 30 5 43.3 5 50s6.4 20 19.3 20c19.3 0 32.1-40 51.4-40C88.6 30 95 43.3 95 50s-6.4 20-19.3 20c-19.3 0-32.1-40-51.4-40z"
+      d="M20.3 1C7.4 1 1 14.3 1 21s6.4 20 19.3 20C39.6 41 52.4 1 71.7 1 84.6 1 91 14.3 91 21s-6.4 20-19.3 20C52.4 41 39.6 1 20.3 1z"
       stroke="currentColor"
       strokeWidth={2}
       strokeDasharray="2.5658892822265624 2.5658892822265624"
@@ -20,7 +20,7 @@ const SpinnerIcon = props => (
         calcMode="linear"
         values="0;256.58892822265625"
         keyTimes="0;1"
-        dur={1}
+        dur={props.dur || 1}
         begin="0s"
         repeatCount="indefinite"
       />
@@ -28,4 +28,4 @@ const SpinnerIcon = props => (
   </svg>
 );
 
-export default SpinnerIcon;
+export default InfinityIcon;
