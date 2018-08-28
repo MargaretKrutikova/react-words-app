@@ -10,7 +10,7 @@ import { WordTypeShape } from 'Services/Words';
 import { actions as toastActions, TOAST_TYPE } from 'Common/Toasts';
 import type { ToastType } from 'Common/Toasts';
 import Words from './Words';
-import { Paginator } from '../Paginator';
+import Paginator from 'react-library-paginator';
 
 const defaultItemsPerPage = 4;
 
@@ -64,6 +64,7 @@ class WordsContainer extends React.Component<PropsType & ContextRouter, void> {
           onPageChange={this.getPaginatedWords}
           totalItems={total}
           itemsPerPage={itemsPerPage}
+          useBootstrapClasses={true}
           currentPage={currentPage}
         />
       </React.Fragment>

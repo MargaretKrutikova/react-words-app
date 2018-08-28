@@ -7,7 +7,7 @@ export type WordsState = {
   pageToLoad: ?number,
   loading: boolean,
   total: number,
-  itemsPerPage: ?number,
+  itemsPerPage?: number,
   error: ?Error,
   items: Array<WordType>
 };
