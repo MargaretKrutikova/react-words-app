@@ -62,7 +62,7 @@
   },
   "dependencies": {
     "apollo-fetch": "^0.7.0",
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "babel-polyfill": "^6.26.0",
     "bootstrap": "^4.1.1",
     "ejs": "^2.5.7",
